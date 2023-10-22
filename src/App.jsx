@@ -3,13 +3,21 @@ import { Route, Routes } from "react-router-dom";
 import "./App.sass";
 import Navbar from "./components/Navbar/Navbar";
 import ContentContainer from "./components/ContentContainer/ContentContainer";
+import Home from "./components/Home/Home";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/" element={<ContentContainer></ContentContainer>} />
+        <Route
+          path="/"
+          element={
+            <ContentContainer>
+              <Home />
+            </ContentContainer>
+          }
+        />
         <Route path="/chat" element={<ContentContainer></ContentContainer>} />
         <Route
           path="Home/Test/example_1"

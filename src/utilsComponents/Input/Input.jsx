@@ -30,7 +30,7 @@ function Input({
 
   return (
     <>
-      {type != "file" ? (
+      {type !== "file" ? (
         <div className="input_">
           <label htmlFor={name}>{title}</label>
           <input
@@ -55,7 +55,7 @@ function Input({
                 <div className="span">Choose a file...</div>{" "}
               </>
             ) : (
-              <img src={filePreview} />
+              <img src={filePreview} alt="" />
             )}
           </label>
           <input

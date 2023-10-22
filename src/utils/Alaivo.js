@@ -1,4 +1,4 @@
-export const alaivoGet = async (url = "", params, options = {}) => {
+export const alaivoGet = async (url = "", options = {}) => {
   return new Promise((resolve, reject) => {
     fetch(url, {
       method: "GET",
@@ -12,7 +12,7 @@ export const alaivoGet = async (url = "", params, options = {}) => {
   });
 };
 
-export const alaivoDelete = async (url = "", params, options = {}) => {
+export const alaivoDelete = async (url = "", options = {}) => {
   return new Promise((resolve, reject) => {
     fetch(url, {
       method: "DELETE",

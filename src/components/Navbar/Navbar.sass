@@ -6,9 +6,18 @@
     width: 17.5rem
     height: 100vh
     transition: all 0.4s ease-in-out
-    background: #ffff
+    background: var(--bg-color)
     padding: 1rem
     box-shadow: 0 0 0.1rem 0.1rem #91919117
+
+    svg
+        path:not([fill="none"])
+            fill: var(--text-bold-color)
+            opacity: 0.9
+        path[stroke]
+            stroke: var(--text-bold-color)
+            opacity: 0.9
+
 .mini
     min-width: 4rem
     width: 4rem

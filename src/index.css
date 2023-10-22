@@ -20,8 +20,8 @@
 }
 
 :root {
-  --primary: #acff1e;
-  --primary-hovered: #21ae92;
+  --primary: #e50242;
+  --primary-hovered: #b60638;
   --box-shadow-color: #f2f2f2;
   --bg-color: #fff;
   --bg-color-body: #f4f4f4;
@@ -56,4 +56,16 @@ body {
 
 a {
   text-decoration: none;
+}
+button {
+  background: transparent;
+  border-radius: 0.2rem;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  font-family: "Sora_R";
+  transition: all 0.2s ease-in-out;
+  border: 1px solid var(--text-color);
+}
+button:hover {
+  transform: scale(1.03);
 }

@@ -20,6 +20,6 @@ export const light = {
   "--text-color": " #676767",
   "--text-bold-color": " #000000",
   "--input-bg": " #ffffff",
-  "--primary": " #34ceaf",
-  "--primary-hovered": " #21ae92",
+  "--primary": " #e50242",
+  "--primary-hovered": " #b60638",
 };

@@ -17,7 +17,7 @@ const Modal = ({ children, closer }) => {
         {children}
       </motion.div>
     </>,
-    document.getElementById("portal")
+    document.getElementById("modal_container")
   );
 };
 

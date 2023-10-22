@@ -1,19 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./style/style.sass";
-// import CaretDownIcon from "../../assets/svg/CarteDownIcon";
 
-const Select = ({ optionsType, name, onChange }) => {
+const Select = ({
+  optionsType,
+  name,
+  onChange,
+  caretIcon = <CaretDownIcon />,
+}) => {
   const [selectedOption, setSelectedOption] = useState(
     optionsType.length > 0
       ? {
-          valeur: optionsType[0].valeur,
+          value: optionsType[0].value,
           label: optionsType[0].label,
         }
-      : { valeur: "", label: "" }
+      : { value: "", label: "" }
   );
   const longContent = useRef(null);
   const [openOptions, setOpenOptions] = useState(false);
-  const heightNecessary = 16 * 2.6 * optionsType.length + 15;
+  const heightNecessary = 16 * 2.6 * optionsType.length;
   const [widthNecessary, setWidthNecessary] = useState(0);
   const longestText = getMaxLenghtText(optionsType);
 
@@ -21,15 +25,15 @@ const Select = ({ optionsType, name, onChange }) => {
     setSelectedOption(
       optionsType.length > 0
         ? {
-            valeur: optionsType[0].valeur,
+            value: optionsType[0].value,
             label: optionsType[0].label,
           }
-        : { valeur: "", label: "" }
+        : { value: "", label: "" }
     );
   }, [optionsType]);
   useEffect(() => {
     let width = longContent.current.getBoundingClientRect().width;
-    setWidthNecessary(width + 3 * 16);
+    setWidthNecessary(width + 3.4 * 16);
   }, [optionsType]);
 
   const handleOpen = () => {
@@ -45,7 +49,7 @@ const Select = ({ optionsType, name, onChange }) => {
         setOpenOptions(false);
       }}
     >
-      <input type="hidden" value={selectedOption.valeur} name={name} />
+      <input type="hidden" value={selectedOption.value} name={name} />
       <div className="container_label" onClick={handleOpen}>
         <div className="text" style={{ width: widthNecessary }}>
           {selectedOption.label}
@@ -57,7 +61,7 @@ const Select = ({ optionsType, name, onChange }) => {
           className="icon"
           style={{ transform: openOptions ? `rotate(180deg)` : `rotate(0deg)` }}
         >
-          {/* <CaretDownIcon /> */}
+          {caretIcon}
         </div>
       </div>
       <div
@@ -70,7 +74,8 @@ const Select = ({ optionsType, name, onChange }) => {
             key={index}
             onClick={() => {
               setSelectedOption(option);
-              if (onChange) onChange({ name: name, value: option.valeur });
+              if (onChange)
+                onChange({ target: { name: name, value: option.value } });
             }}
           >
             {option.label}
@@ -81,7 +86,7 @@ const Select = ({ optionsType, name, onChange }) => {
   );
 };
 
-// use only for { valeur , label } Array
+// use only for { value , label } Array
 const getMaxLenghtText = (optionsType) => {
   let textArray = optionsType.filter((option, i, array) => {
     return (
@@ -91,6 +96,25 @@ const getMaxLenghtText = (optionsType) => {
   });
   if (textArray.length > 0) return textArray[0].label;
   else return "";
+};
+
+const CaretDownIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="10"
+      height="6.807"
+      viewBox="0 0 12 6.807"
+    >
+      <path
+        id="Icon_awesome-caret-down"
+        data-name="Icon awesome-caret-down"
+        d="M1.6,13.5H11.987a.806.806,0,0,1,.569,1.376L7.365,20.071a.809.809,0,0,1-1.142,0L1.033,14.876A.806.806,0,0,1,1.6,13.5Z"
+        transform="translate(-0.794 -13.5)"
+        fill="#707070"
+      />
+    </svg>
+  );
 };
 
 export default Select;
