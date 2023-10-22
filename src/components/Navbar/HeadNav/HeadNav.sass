@@ -1,0 +1,53 @@
+.head_nav
+    display: flex
+    width: 100%
+    align-items: center
+    justify-content: space-between
+    margin-bottom: 1.7rem
+    transition: all 0.2s ease-in-out
+    .logo
+        display: flex
+        align-items: center
+        .icon
+            margin-right: 0.5rem
+            transition: all 0.2s ease-in-out
+            svg
+                path
+                    transition: all 0.2s ease-in-out
+        .text
+            font-family: "Sora_SM"
+            font-size: 1.42rem
+            pointer-events: none
+            white-space: nowrap
+            transition: all 0.2s ease-in-out,opacity 1s ease-in
+            color: var(--text-bold-color)
+    .btn_small_nav
+        margin-top: 0.3rem
+        cursor: pointer
+        &:hover
+            svg
+                path
+                    stroke: var(--primary)
+        svg
+            path
+                stroke: var(--text-color)
+
+.mini
+    margin-bottom: 1.7rem
+    .logo
+        width: 4rem
+        overflow: hidden
+        display: flex
+        justify-content: center
+        align-items: center
+        .icon
+            margin-right: 0
+            cursor: pointer
+            &:hover
+                svg
+                    path
+                        fill: var(--primary)
+        .text
+            width: 0
+            opacity: 0
+            overflow: hidden

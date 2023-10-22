@@ -1,0 +1,34 @@
+.paper_nav
+    position: relative
+    box-shadow: 0 0 0.1rem 0.1rem var(--box-shadow)
+    .container
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        position: relative
+        padding: 0.4rem 0.5rem 0.3rem 0.4rem
+        background: var(--bg-color)
+        .row_sub_link
+            margin-bottom: 0.2rem
+            a
+                display: flex
+                padding: 0.8rem 0.2rem 0.8rem 0.5rem
+                width: 13rem
+                align-items: center
+                font-family: "Sora_L"
+                font-size: 0.9rem
+                border-radius: 0.3rem
+                transition: all 0.1s ease-in-out
+                cursor: pointer
+                &:hover
+                    background: var(--bg-color-hovered)
+        .active_row
+            background: var(--bg-color-hovered)
+    .icon_tri
+        position: absolute
+        right: 100%
+        z-index: 2
+        display: flex
+        justify-content: center
+        align-items: center
+        transform: translateY(25%)

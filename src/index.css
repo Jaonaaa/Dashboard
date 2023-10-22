@@ -1,13 +1,59 @@
+@font-face {
+  font-family: "Poppins_L";
+  src: url(./assets/fonts/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: "Poppins_B";
+  src: url(./assets/fonts/Poppins-Bold.ttf);
+}
+@font-face {
+  font-family: "Sora_R";
+  src: url(./assets/fonts/Sora-Regular.ttf);
+}
+@font-face {
+  font-family: "Sora_L";
+  src: url(./assets/fonts/Sora-Light.ttf);
+}
+@font-face {
+  font-family: "Sora_SM";
+  src: url(./assets/fonts/Sora-SemiBold.ttf);
+}
+
+:root {
+  --primary: #acff1e;
+  --primary-hovered: #21ae92;
+  --box-shadow-color: #f2f2f2;
+  --bg-color: #fff;
+  --bg-color-body: #f4f4f4;
+  --bg-color-hovered: #edededcf;
+  --text-bold-color: #000000;
+  --text-color: #676767;
+  --input-bg: #ffffff;
+
+  /* ///// */
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  background: var(--bg-color-body);
+  overflow: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+::selection {
+  background-color: rgb(64, 210, 176);
+  color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Poppins_L;
+  color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
 }
