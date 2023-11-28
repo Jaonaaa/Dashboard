@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import { useMyNotifs } from "../../utilsComponents/Notif/useNotifs";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Modal from "../../utilsComponents/Modal/Modal";
 import Select from "../../utilsComponents/Select/Select";
 import Input from "../../utilsComponents/Input/Input";
 import Spinner from "../../utilsComponents/Spinner/Spinner";
 import SwitcherTheme from "./Switcher/SwitcherTheme";
-import { useMyNotifs } from "../../utilsComponents/Notif/useNotifs";
-
-import "./Home.sass";
 import ValidationModal from "../../utilsComponents/Modal/Validation/ValidationModal";
+import "./Home.sass";
+import { variantItem, variantTable } from "../../utilsComponents/Variants";
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -27,30 +29,30 @@ const Home = () => {
   };
 
   return (
-    <div className="container_components">
-      <div className="component_box">
+    <motion.div className="container_components" variants={variantTable} initial={"hidden"} animate={"visible"}>
+      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
         <button onClick={handleModal}> Open Modal </button>
         {openModal && <Modal closer={handleModal}> I'm a modal (～￣▽￣)～ </Modal>}
         <div className="title_compo">Modal</div>
-      </div>
-      <div className="component_box">
+      </motion.div>
+      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
         <button onClick={showRandomNotif}> Add notifs</button>
         {notifs.map((notif) => notif)}
         <div className="title_compo">Notifications</div>
-      </div>
+      </motion.div>
 
-      <div className="component_box">
+      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
         <Input onChange={() => {}} title={"Name"} name="title" />
 
         <div className="title_compo">Input </div>
-      </div>
+      </motion.div>
 
-      <div className="component_box">
+      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
         <Spinner On={true} size="5rem" />
         <div className="title_compo">Spinner</div>
-      </div>
+      </motion.div>
 
-      <div className="component_box">
+      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
         <Select
           onChange={(e) => {
             //   console.log(e);
@@ -59,19 +61,32 @@ const Home = () => {
           optionsType={options}
         />
         <div className="title_compo">Dropdown</div>
-      </div>
+      </motion.div>
 
-      <div className="component_box">
+      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
         <div className="title_compo">Themes</div>
         <SwitcherTheme />
-      </div>
+      </motion.div>
 
-      <div className="component_box">
+      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
         <div className="title_compo">Validation Box</div>
         <button onClick={handleModalValidation}> Confirm </button>
-        {openModalValidation && <ValidationModal closer={handleModalValidation} />}
-      </div>
-    </div>
+        <AnimatePresence>
+          {openModalValidation && (
+            <ValidationModal
+              icon={""}
+              callBack={handleModalValidation}
+              title="Example Modal validation"
+              content="
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit e. 
+              Ipsum rerum voluptates nihil ullam non
+              doloribus quia laudantium voluptatibus."
+              closer={handleModalValidation}
+            />
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </motion.div>
   );
 };
 

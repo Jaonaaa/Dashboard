@@ -8,6 +8,7 @@ import Home from "./components/Home/Home";
 
 import "./App.sass";
 import Table, { dataDefault } from "./utilsComponents/Table/Table";
+import Login from "./components/Login/Login";
 
 function App() {
   useDefaultTheme();
@@ -43,7 +44,14 @@ function App() {
           }
         />
         <Route path="/something" element={<ContentContainer></ContentContainer>} />
-        <Route path="/login" element={<></>} />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Login />
+            </>
+          }
+        />
         <Route path="/settings" element={<ContentContainer></ContentContainer>} />
       </Routes>
     </div>

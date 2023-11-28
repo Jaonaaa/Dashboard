@@ -4,13 +4,14 @@ import Box from "../../Box/Box";
 
 import "./ValidationModal.sass";
 
-const ValidationModal = ({ title = "Title", content = "Lorem", closer, callBack, icon }) => {
+const ValidationModal = ({ title = "", content = "Lorem", closer, callBack, icon }) => {
+  console.log(icon);
   return (
     <>
       <Modal>
         <Box>
           <div className="validation-container">
-            {icon ? (
+            {icon != null ? (
               <div className="status_container">
                 <div className="icon"></div>
               </div>
@@ -20,10 +21,7 @@ const ValidationModal = ({ title = "Title", content = "Lorem", closer, callBack,
 
             <div className="details_container">
               <div className="title"> {title} </div>
-              <div className="content">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit e. Ipsum rerum voluptates nihil ullam non
-                doloribus quia laudantium voluptatibus.
-              </div>
+              <div className="content">{content}</div>
               <div className="buttons">
                 <button onClick={closer} className="cancel">
                   Cancel

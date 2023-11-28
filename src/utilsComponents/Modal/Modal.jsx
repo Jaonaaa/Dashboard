@@ -10,7 +10,7 @@ const Modal = ({ children, closer }) => {
       <motion.div
         initial={{ y: "0%", x: "-50%", scale: 0.8 }}
         animate={{ y: "-50%", x: "-50%", scale: 1 }}
-        exit={{ y: "80%", x: "-50%", scale: 0.8, opacity: 0 }}
+        exit={{ y: "95%", x: "-50%", scale: 0.8, opacity: 0 }}
         id="content_modal"
       >
         {children}
