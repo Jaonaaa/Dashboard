@@ -1,3 +1,5 @@
+@use '../../breakpoints'
+
 #notifs_container
     display: flex
     flex-direction: column-reverse
@@ -15,6 +17,16 @@
         font-size: 0.9rem
         position: relative
         margin-bottom: 1rem
+        transition: all 0.2s ease-in-out
+        @include breakpoints.break_MD()
+            width: 19rem
+            padding: 0.9rem 1.1rem 1.2rem .95rem
+        @include breakpoints.break_SM()
+            width: 17rem
+            padding: 0.9rem 0.8rem 1.1rem .8rem
+        @include breakpoints.break_XSM()
+            width: 16rem
+            padding: 0.9rem 0.8rem 1.1rem .8rem
         .closer
             position: absolute
             right: 1.2rem
@@ -33,10 +45,24 @@
                 justify-content: center
                 align-items: center
                 border-radius: 50%
+                @include breakpoints.break_MD()
+                    width: 1.3rem
+                    height: 1.3rem
+                @include breakpoints.break_SM()
+                    width: 1.2rem
+                    height: 1.2rem
+                @include breakpoints.break_XSM()
+                    width: 1.1rem
+                    height: 1.1rem
             .title_notif
                 font-size: 0.82rem
                 font-weight: bolder
                 font-family: Sora
+                margin-bottom: 0.2rem
+                @include breakpoints.break_MD()
+                    font-size: 0.78rem
+                @include breakpoints.break_SM()
+                    font-size: 0.75rem
             .error
                 color: #f25e5e
             .info
@@ -52,3 +78,9 @@
             font-size: 0.78rem
             margin-right: 1rem
             color: var(--text-color)
+            @include breakpoints.break_MD()
+                font-size: 0.75rem
+                margin-left: 2.2rem
+            @include breakpoints.break_SM()
+                font-size: 0.72rem
+                margin-left: 2rem

@@ -10,7 +10,7 @@ const HeadNav = ({ miniNav, switchNav }) => {
   };
   return (
     <>
-      <div className={`head_nav ${miniNav ? "mini" : ""}`}>
+      <div className={`head_nav ${miniNav ? "mini_head" : ""}`}>
         <div className="logo">
           <div className="icon" onClick={handleLogo}>
             <LogoDefault />

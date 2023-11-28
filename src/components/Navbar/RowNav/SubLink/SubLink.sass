@@ -1,6 +1,8 @@
+@use '../../../../breakpoints'
+
 .paper_nav
     position: relative
-    box-shadow: 0 0 0.1rem 0.1rem var(--box-shadow)
+    z-index: 2
     .container
         display: flex
         flex-direction: column
@@ -20,6 +22,10 @@
                 border-radius: 0.3rem
                 transition: all 0.1s ease-in-out
                 cursor: pointer
+                @include breakpoints.break_LG()
+                    width: 12rem
+                    font-size: 0.86rem
+
                 &:hover
                     background: var(--bg-color-hovered)
         .active_row
@@ -32,3 +38,8 @@
         justify-content: center
         align-items: center
         transform: translateY(25%)
+        svg
+            path
+                fill: var(--bg-color) !important
+            feFlood 
+                flood-color: var(--box-shadow-color)

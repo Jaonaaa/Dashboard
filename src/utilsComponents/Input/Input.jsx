@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Input.sass";
 
 function Input({
@@ -11,6 +11,7 @@ function Input({
   disabled,
   pattern,
   required = false,
+  fullWidth = false,
 }) {
   const [value, setValue] = useState(defaultValue);
   const [fileLoaded, setFileLoaded] = useState(false);
@@ -27,11 +28,21 @@ function Input({
       setFilePreview(pathFileLoaded);
     }
   };
+  useEffect(() => {
+    setValue(defaultValue);
+    onChange({ target: { value: defaultValue, name: name } });
+  }, [defaultValue]);
+
+  const handleNumeric = (e) => {
+    if (isNaN(+e.target.value)) return "";
+    setValue(e.target.value);
+    onChange(e);
+  };
 
   return (
     <>
-      {type != "file" ? (
-        <div className="input_">
+      {type !== "file" ? (
+        <div className={`input_ ${fullWidth ? "fullwidth" : ""}`}>
           <label htmlFor={name}>{title}</label>
           <input
             autoComplete="true"
@@ -40,14 +51,14 @@ function Input({
             required={required}
             id={name}
             pattern={pattern}
-            onChange={handleValue}
+            onChange={type === "numeric" ? handleNumeric : handleValue}
             placeholder={placeholder}
             value={value}
             disabled={disabled}
           />
         </div>
       ) : (
-        <div className="input_">
+        <div className={`input_ ${fullWidth ? "fullwidth" : ""}`}>
           <div className="label_">{title} </div>
           <label htmlFor={name} className="label_file_container">
             {!fileLoaded ? (
@@ -55,7 +66,7 @@ function Input({
                 <div className="span">Choose a file...</div>{" "}
               </>
             ) : (
-              <img src={filePreview} />
+              <img src={filePreview} alt="" />
             )}
           </label>
           <input

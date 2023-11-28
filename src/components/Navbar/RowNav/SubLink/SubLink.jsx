@@ -19,9 +19,7 @@ const SubLink = ({ position, links = [], setActiveLink }) => {
       style={{
         top: position.top + "px",
         left: position.to_Right + 25 + "px",
-        transform: `translateY(-${
-          (links.length > 0 ? links.length / 2 : 0) * 10
-        }%)`,
+        transform: `translateY(-${(links.length > 0 ? links.length / 2 : 0) * 10}%)`,
       }}
     >
       <div
@@ -45,7 +43,6 @@ const LinkRow = ({ link, setActiveLink }) => {
   const [activeRow, setActiveRow] = useState(false);
   useEffect(() => {
     if (window.location.pathname == link.linkTo) {
-      console.log("Active link");
       setActiveRow(true);
     }
   }, []);
@@ -57,11 +54,7 @@ const LinkRow = ({ link, setActiveLink }) => {
 
   return (
     <>
-      <div
-        className={`row_sub_link ${activeRow ? "active_row" : ""}`}
-        onClick={handleClick}
-        linkto={link.linkTo}
-      >
+      <div className={`row_sub_link ${activeRow ? "active_row" : ""}`} onClick={handleClick} linkto={link.linkTo}>
         <Link to={link.linkTo}>{link.label}</Link>
       </div>
     </>

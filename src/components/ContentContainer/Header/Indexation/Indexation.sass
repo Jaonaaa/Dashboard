@@ -1,7 +1,11 @@
+@use '../../../../breakpoints'
 .indexation_container
     margin-left: 1.8rem
     display: flex
     align-items: center
+    transition: all 0.2s ease-in-out
+    @include breakpoints.break_MD()
+        margin-left: 1rem
     .index_before
         margin-right: 0.5rem
         color: #838285c0

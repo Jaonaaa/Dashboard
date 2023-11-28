@@ -83,4 +83,6 @@ const linksNavData = [
   },
 ];
 
+export const link_to_hide_nav = ["/settings", "/something", "/login"];
+
 export default linksNavData;
