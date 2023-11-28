@@ -1,3 +1,5 @@
+@use '../../breakpoints'
+
 .container_components
     display: flex
     align-items: center
@@ -6,6 +8,8 @@
     flex-wrap: wrap
     max-width: 100%
     padding: 1rem 2rem
+    @include breakpoints.break_MD()
+        margin-bottom: 5rem
     .component_box
         display: flex
         justify-content: center
@@ -19,6 +23,10 @@
         padding: 1rem
         border-radius: 0.1rem
         border: 1.2px solid var(--box-shadow-color)
+        @include breakpoints.break_MD()
+            margin: 0.25rem auto
+            height: 19rem
+            width: 19rem
         .title_compo
             position: absolute
             display: flex

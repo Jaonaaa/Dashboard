@@ -16,7 +16,10 @@ const NotifRow = ({ notif, timer = 5000 }) => {
   };
 
   const capitalizeFirstLetter = (word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
+    let text = word.charAt(0).toUpperCase() + word.slice(1);
+    if (typeof text !== "string") text = "Invalid Title XD";
+    if (text === "[object object]") text = "Object title detected :( ";
+    return text;
   };
 
   return (
@@ -36,11 +39,9 @@ const NotifRow = ({ notif, timer = 5000 }) => {
             </div>
             <div className="header">
               <div className="icon"> {icons[notif.status]}</div>
-              <div className={`title_notif ${notif.status}`}>
-                {capitalizeFirstLetter(notif.status)}
-              </div>
+              <div className={`title_notif ${notif.status}`}>{capitalizeFirstLetter(notif.status)}</div>
             </div>
-            <div className="body">{notif.body}</div>
+            <div className="body">{notif.body ? notif.body : "I'm blank :( "}</div>
           </div>
         </motion.div>
       )}
@@ -50,12 +51,7 @@ const NotifRow = ({ notif, timer = 5000 }) => {
 
 const icons = {
   info: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="34"
-      height="34"
-      viewBox="0 0 34 34"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
       <g id="info" transform="translate(-147 -752)">
         <rect
           id="Rectangle_14"
@@ -76,12 +72,7 @@ const icons = {
     </svg>
   ),
   succes: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="28.215"
-      height="28.218"
-      viewBox="0 0 28.215 28.218"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="28.215" height="28.218" viewBox="0 0 28.215 28.218">
       <path
         id="Tracé_90"
         data-name="Tracé 90"
@@ -92,12 +83,7 @@ const icons = {
     </svg>
   ),
   error: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="34"
-      height="34"
-      viewBox="0 0 34 34"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
       <g id="error" transform="translate(-147 -529)">
         <rect
           id="Rectangle_13"
@@ -118,12 +104,7 @@ const icons = {
     </svg>
   ),
   star: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="34"
-      height="34"
-      viewBox="0 0 34 34"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
       <g id="star" transform="translate(-61 -672)">
         <rect
           id="Rectangle_10"
@@ -144,12 +125,7 @@ const icons = {
     </svg>
   ),
   warning: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="34"
-      height="34"
-      viewBox="0 0 34 34"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
       <g id="warning" transform="translate(-147 -675)">
         <rect
           id="Rectangle_11"
@@ -172,12 +148,7 @@ const icons = {
 };
 
 const closer = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="9.166"
-    height="9.166"
-    viewBox="0 0 9.166 9.166"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="9.166" height="9.166" viewBox="0 0 9.166 9.166">
     <path
       id="Icon_material-close"
       data-name="Icon material-close"

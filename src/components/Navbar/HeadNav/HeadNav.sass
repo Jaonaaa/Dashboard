@@ -1,3 +1,5 @@
+@use '../../../breakpoints'
+
 .head_nav
     display: flex
     width: 100%
@@ -5,13 +7,18 @@
     justify-content: space-between
     margin-bottom: 1.7rem
     transition: all 0.2s ease-in-out
+
     .logo
         display: flex
         align-items: center
         .icon
             margin-right: 0.5rem
+            margin-top: 0.2rem
             transition: all 0.2s ease-in-out
+
             svg
+                @include breakpoints.break_LG()
+                    width: 2.5rem
                 path
                     transition: all 0.2s ease-in-out
         .text
@@ -21,6 +28,8 @@
             white-space: nowrap
             transition: all 0.2s ease-in-out,opacity 1s ease-in
             color: var(--text-bold-color)
+            @include breakpoints.break_LG()
+                font-size: 1.34rem
     .btn_small_nav
         margin-top: 0.3rem
         cursor: pointer
@@ -32,22 +41,29 @@
             path
                 stroke: var(--text-color)
 
-.mini
-    margin-bottom: 1.7rem
-    .logo
-        width: 4rem
-        overflow: hidden
-        display: flex
-        justify-content: center
-        align-items: center
-        .icon
-            margin-right: 0
-            cursor: pointer
-            &:hover
-                svg
-                    path
-                        fill: var(--primary)
-        .text
-            width: 0
-            opacity: 0
+.navbar_container
+    .mini_head
+        margin-bottom: 1.7rem
+        margin-top: 0.9rem
+        .logo
+            width: 4rem
             overflow: hidden
+            display: flex
+            justify-content: center
+            align-items: center
+            @include breakpoints.break_LG()
+                width: 3.5rem
+            .icon
+                margin-right: 0
+                cursor: pointer
+                display: flex
+                justify-content: center
+                align-items: center
+                &:hover
+                    svg
+                        path
+                            fill: var(--primary)
+            .text
+                width: 0
+                opacity: 0
+                overflow: hidden

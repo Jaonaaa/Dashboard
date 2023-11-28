@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import {
-  getCurrentThemeName,
-  switchTheme,
-  useDefaultTheme,
-} from "../../../themes/Theme";
+import { getCurrentThemeName, switchTheme } from "../../../themes/Theme";
 
 import "./SwitcherTheme.sass";
 
 const SwitcherTheme = () => {
-  useDefaultTheme();
   const [theme, setTheme] = useState(getCurrentThemeName());
   const handleTheme = (theme) => {
     switchTheme(theme);
