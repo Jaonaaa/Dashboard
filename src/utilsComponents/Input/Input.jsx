@@ -12,6 +12,8 @@ function Input({
   pattern,
   required = false,
   fullWidth = false,
+  splitterTextArea = "\\n",
+  rows = 10,
 }) {
   const [value, setValue] = useState(defaultValue);
   const [fileLoaded, setFileLoaded] = useState(false);
@@ -38,32 +40,23 @@ function Input({
     setValue(e.target.value);
     onChange(e);
   };
+  const handleTextArea = (e) => {
+    let rows = e.target.value.split("\n");
+    let newText = "";
+    rows.forEach((row) => (newText += row + splitterTextArea));
+    // use this for the default split .replace(/\\n/g, "\n")
+    return { target: { value: newText } };
+  };
 
   return (
     <>
-      {type !== "file" ? (
-        <div className={`input_ ${fullWidth ? "fullwidth" : ""}`}>
-          <label htmlFor={name}>{title}</label>
-          <input
-            autoComplete="true"
-            type={type}
-            name={name}
-            required={required}
-            id={name}
-            pattern={pattern}
-            onChange={type === "numeric" ? handleNumeric : handleValue}
-            placeholder={placeholder}
-            value={value}
-            disabled={disabled}
-          />
-        </div>
-      ) : (
+      {type === "file" ? (
         <div className={`input_ ${fullWidth ? "fullwidth" : ""}`}>
           <div className="label_">{title} </div>
           <label htmlFor={name} className="label_file_container">
             {!fileLoaded ? (
               <>
-                <div className="span">Choose a file...</div>{" "}
+                <div className="span"> Choose a file... </div>{" "}
               </>
             ) : (
               <img src={filePreview} alt="" />
@@ -78,6 +71,40 @@ function Input({
             onChange={handleValueFile}
             placeholder={placeholder}
             files={null}
+            disabled={disabled}
+          />
+        </div>
+      ) : type === "textarea" ? (
+        <>
+          <div className={`input_ ${fullWidth ? "fullwidth" : ""}`}>
+            <label htmlFor={name}>{title}</label>
+            <textarea
+              name={name}
+              autoComplete="true"
+              id={name}
+              placeholder={placeholder}
+              rows={rows}
+              onChange={(e) => {
+                onChange(handleTextArea(e));
+              }}
+              disabled={disabled}
+              defaultValue={value}
+            ></textarea>
+          </div>
+        </>
+      ) : (
+        <div className={`input_ ${fullWidth ? "fullwidth" : ""}`}>
+          <label htmlFor={name}>{title}</label>
+          <input
+            autoComplete="true"
+            type={type}
+            name={name}
+            required={required}
+            id={name}
+            pattern={pattern}
+            onChange={type === "numeric" ? handleNumeric : handleValue}
+            placeholder={placeholder}
+            value={value}
             disabled={disabled}
           />
         </div>

@@ -14,6 +14,10 @@
         transition: all 0.2s ease-in-out
         @include breakpoints.break_LG()
             margin-bottom: 0.7rem
+        @include breakpoints.break_MD()
+            font-size: 0.85rem
+        @include breakpoints.break_SM()
+            font-size: 0.82rem
     .list_nav_link
         display: flex
         flex-direction: column
@@ -25,7 +29,6 @@
     .row_title_menu
         margin-bottom: 0.5rem
         @include breakpoints.break_LG()
-
             margin-bottom: 0.55rem
     .line
         border: 1px solid #c2bebe

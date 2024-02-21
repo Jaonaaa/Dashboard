@@ -1,5 +1,7 @@
 import React from "react";
 import "./Table.sass";
+import { motion } from "framer-motion";
+import { variantItem, variantTable } from "../Variants";
 
 const Table = ({ headerOn, body = [], index = [], titles = [], classes = [] }) => {
   return (
@@ -12,7 +14,7 @@ const Table = ({ headerOn, body = [], index = [], titles = [], classes = [] }) =
           <div className="under_container">{headerOn.under_component}</div>
         </>
       )}
-      <table>
+      <motion.table variants={variantTable} initial={"hidden"} animate={"visible"}>
         <thead>
           <tr>
             {titles.map((title, i) => (
@@ -31,11 +33,17 @@ const Table = ({ headerOn, body = [], index = [], titles = [], classes = [] }) =
           ));
           return (
             <tbody key={i}>
-              <tr className={`tab_row ${(2 + i) % 2 === 0 ? "one" : "two"}`}>{column}</tr>
+              <motion.tr
+                className={`tab_row ${(2 + i) % 2 === 0 ? "one" : "two"}`}
+                variants={variantItem}
+                transition={"transition"}
+              >
+                {column}
+              </motion.tr>
             </tbody>
           );
         })}
-      </table>
+      </motion.table>
     </div>
   );
 };

@@ -44,6 +44,8 @@
             @include breakpoints.break_MD()
                 font-size: 0.7rem
                 height: 1.8rem
+            @include breakpoints.break_SM()
+                font-size: 0.65rem
         tr,td
             padding-right: 3rem
             width: fit-content
@@ -53,12 +55,17 @@
             font-size: 0.9rem
             color: var(--text-color)
             white-space: nowrap
+            @include breakpoints.break_LG()
+                font-size: 0.86rem
             @include breakpoints.break_MD()
-                font-size: 0.85rem
+                font-size: 0.82rem
                 padding-left: 0.7rem
+            @include breakpoints.break_SM()
+                font-size: 0.74rem
         .tab_row
             height: 3.5rem
-            font-size: 1rem
+            @include breakpoints.break_SM()
+                height: 3rem
         .one
             background: var(--bg-color)
         .two

@@ -19,7 +19,7 @@
         background: var(--bg-color)
         height: 16rem
         width: 19rem
-        margin: 0.08rem
+        margin: 0.2rem
         padding: 1rem
         border-radius: 0.1rem
         border: 1.2px solid var(--box-shadow-color)
@@ -27,6 +27,10 @@
             margin: 0.25rem auto
             height: 19rem
             width: 19rem
+        @include breakpoints.break_SM()
+            height: 15.5rem
+            width: 80vw
+            margin-bottom: 0.8rem
         .title_compo
             position: absolute
             display: flex
@@ -37,6 +41,10 @@
             color: var(--primary)
             justify-content: flex-start
             width: 100%
+            @include breakpoints.break_MD()
+                font-size: 0.86rem
+            @include breakpoints.break_SM()
+                font-size: 0.8rem
             &::before
                 content: ""
                 position: absolute

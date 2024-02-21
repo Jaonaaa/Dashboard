@@ -4,13 +4,24 @@ import Box from "../../Box/Box";
 
 import "./ValidationModal.sass";
 
-const ValidationModal = ({ title = "Title", content = "Lorem", closer, callBack, icon }) => {
+// interface ValidationModalProps {
+//   content: React.ReactNode | string;
+//   closer?: MouseEventHandler<HTMLButtonElement>;
+//   callBack?: MouseEventHandler<HTMLButtonElement>;
+//   title?: string;
+//   icon?: React.ReactNode | string;
+//   cancelOn?: boolean;
+//   validationText?: string;
+// }
+
+
+const ValidationModal = ({ title = "", content = "Lorem", closer, callBack, icon,cancelOn,validationText }) => {
   return (
     <>
-      <Modal>
+     <Modal closer={closer}>
         <Box>
           <div className="validation-container">
-            {icon ? (
+            {icon != null ? (
               <div className="status_container">
                 <div className="icon"></div>
               </div>
@@ -20,16 +31,17 @@ const ValidationModal = ({ title = "Title", content = "Lorem", closer, callBack,
 
             <div className="details_container">
               <div className="title"> {title} </div>
-              <div className="content">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit e. Ipsum rerum voluptates nihil ullam non
-                doloribus quia laudantium voluptatibus.
-              </div>
+              <div className="content">{content}</div>
               <div className="buttons">
-                <button onClick={closer} className="cancel">
-                  Cancel
-                </button>
+                {cancelOn !== false ? (
+                  <button onClick={closer} className="cancel">
+                    Annuler
+                  </button>
+                ) : (
+                  ""
+                )}
                 <button onClick={callBack} className="confirm">
-                  Confirm
+                  {validationText ? validationText : "Valider"}
                 </button>
               </div>
             </div>

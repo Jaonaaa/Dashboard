@@ -1,3 +1,5 @@
+@use '../../../../breakpoints'
+
 .user_param
     height: 100%
     display: flex
@@ -5,6 +7,11 @@
     margin-top: 0.5rem
     justify-content: flex-start
     margin-right: 0.5rem
+    @include breakpoints.break_MD()
+        margin-top: 0.6rem
+        margin-right: 0.4rem
+    @include breakpoints.break_SM()
+        margin-top: 0.1rem
     .avatar
         min-width: 2.2rem
         min-height: 2.2rem
@@ -16,6 +23,9 @@
         justify-content: center
         position: relative
         align-items: center
+        @include breakpoints.break_MD()
+            min-width: 2rem
+            min-height: 2rem
         .blank
             width: 100%
             position: absolute
@@ -67,11 +77,19 @@
                 display: flex
                 align-items: center
                 justify-content: flex-start
-                width: 10rem
+                width: 11rem
                 cursor: pointer
                 transition: all 0.1s ease-in-out
                 font-size: 0.87rem
                 padding: 0.7rem 0.2rem 0.7rem 0.6rem
+                transition: all 0.2s ease-in-out
+                @include breakpoints.break_MD()
+                    width: 9.5rem
+                    font-size: 0.84rem
+                @include breakpoints.break_SM()
+                    width: 8.8rem
+                    font-size: 0.72rem
+                    padding: 0.67rem 0.2rem 0.67rem 0.6rem
                 &:hover
                     background: var(--bg-color-hovered)
     .button_log_in
@@ -84,10 +102,20 @@
         transition: all 0.2s ease-in-out
         display: flex
         align-items: center
+        @include breakpoints.break_MD()
+            font-size: 0.82rem
+            padding: 0.46rem 1.12rem
+        @include breakpoints.break_SM()
+            font-size: 0.78rem
+            padding: 0.42rem 1rem
         &:hover
             border: 1px solid var(--primary-hovered)
-            .text
-                color: var(--primary-hovered)
+        .text
+            color: var(--primary-hovered)
+            @include breakpoints.break_MD()
+                font-size: 0.8rem
+            @include breakpoints.break_SM()
+                font-size: 0.76rem
             svg
                 path
                     fill: var(--primary-hovered)

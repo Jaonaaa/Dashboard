@@ -16,7 +16,7 @@
         transition: all 0.2s ease-in-out
         @include breakpoints.break_MD()
             font-size: 0.7rem
-    input
+    input,textarea
         box-shadow: 0 0 0.1rem 0.1rem #9e9e9e47
         border-radius: 0.2rem
         border: none
@@ -39,6 +39,11 @@
             opacity: 0.8
             color: #ffff
             pointer-events: none
+    textarea
+        padding: 0.5rem
+        // height: 10rem
+        resize: none
+
     .label_file_container
         margin: 1rem auto
         width: 22rem

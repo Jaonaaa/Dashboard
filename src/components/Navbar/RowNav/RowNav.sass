@@ -34,8 +34,9 @@
         transition: all 0.2s ease-in-out
         align-items: center
         @include breakpoints.break_LG()
-
             height: 2.75rem
+        @include breakpoints.break_SM()
+            height: 2.5rem
         .icon
             width: 3rem
             height: 3rem
@@ -44,9 +45,11 @@
             justify-content: center
             align-items: center
             @include breakpoints.break_LG()
-
                 width: 2.75rem
                 height: 2.75rem
+            @include breakpoints.break_SM()
+                width: 2.5rem
+                height: 2.5rem
             svg
                 path
                     transition: all 0.2s ease-in-out
@@ -61,8 +64,11 @@
             transition: all 0.2s ease-in-out
             text-overflow: ellipsis
             @include breakpoints.break_LG()
-
-            font-size: 0.85rem
+                font-size: 0.85rem
+            @include breakpoints.break_MD()
+                font-size: 0.82rem
+            @include breakpoints.break_SM()
+                font-size: 0.77rem
         .option
             margin-left: auto
             margin-right: 0.5rem
@@ -80,15 +86,19 @@
                 background: var(--bg-color-body)
                 font-size: 0.85rem
                 @include breakpoints.break_LG()
-
                     width: 1.8rem
                     font-size: 0.81rem
+                @include breakpoints.break_SM()
+                    width: 1.5rem
+                    font-size: 0.77rem
 
             .caret
                 display: flex
                 justify-content: center
                 align-items: center
                 width: 2rem
+                @include breakpoints.break_SM()
+                    width: 1.6rem
     .paper_nav
         position: fixed
         width: fit-content

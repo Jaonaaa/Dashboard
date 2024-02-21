@@ -19,12 +19,15 @@
             align-items: center
             height: 2rem
             pointer-events: none
-            @include breakpoints.break_MD()
-                width: 2rem
-                pointer-events: auto
             border-radius: 50%
             transition: all 0.2s ease-in-out
             cursor: pointer
+            @include breakpoints.break_MD()
+                width: 2rem
+                pointer-events: auto
+                svg
+                    width: 6.5px
+
             svg
                 path
                     fill: var(--text-color)
