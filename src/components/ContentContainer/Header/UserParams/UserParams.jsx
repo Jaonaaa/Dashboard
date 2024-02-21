@@ -17,7 +17,7 @@ const UserParams = () => {
 
   return (
     <div className="user_param">
-      {user == undefined ? (
+      {user != undefined ? (
         <>
           <div className="button_log_in" onClick={goLogin}>
             <span className="text">Login</span> <ArrowRight />{" "}

@@ -7,7 +7,7 @@ import NotifRow from "./NotifRow";
 const Notifs = ({ notif }) => {
   const { loaded } = useNotifs();
   const status =
-    (notif.status + "").toLowerCase() === "ok"
+    (notif.status + "").toLowerCase() === "ok" || (notif.status + "").toLowerCase() === "good"
       ? "succes"
       : (notif.status + "").toLowerCase();
   return (

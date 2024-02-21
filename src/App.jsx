@@ -6,9 +6,10 @@ import Navbar from "./components/Navbar/Navbar";
 import ContentContainer from "./components/ContentContainer/ContentContainer";
 import Home from "./components/Home/Home";
 
-import "./App.sass";
 import Table, { dataDefault } from "./utilsComponents/Table/Table";
 import Login from "./components/Login/Login";
+import CustomChart from "./utilsComponents/Chart/CustomChart";
+import "./App.sass";
 
 function App() {
   useDefaultTheme();
@@ -26,7 +27,14 @@ function App() {
             </ContentContainer>
           }
         />
-        <Route path="/chat" element={<ContentContainer></ContentContainer>} />
+        <Route
+          path="/chat"
+          element={
+            <ContentContainer>
+              <CustomChart />
+            </ContentContainer>
+          }
+        />
         <Route path="Home/Test/example_1" element={<ContentContainer></ContentContainer>} />{" "}
         <Route path="/example_11" element={<ContentContainer></ContentContainer>} />
         <Route path="/test">
