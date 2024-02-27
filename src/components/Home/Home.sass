@@ -6,7 +6,7 @@
     justify-content: center
     margin: 5rem auto auto auto
     flex-wrap: wrap
-    max-width: 100%
+    max-min-width: 100%
     padding: 1rem 2rem
     @include breakpoints.break_MD()
         margin-bottom: 5rem
@@ -17,19 +17,19 @@
         flex-direction: column
         align-items: center
         background: var(--bg-color)
-        height: 16rem
-        width: 19rem
+        min-height: 16rem
+        min-width: 19rem
         margin: 0.2rem
-        padding: 1rem
+        padding: 2rem 1rem
         border-radius: 0.1rem
         border: 1.2px solid var(--box-shadow-color)
         @include breakpoints.break_MD()
             margin: 0.25rem auto
-            height: 19rem
-            width: 19rem
+            min-height: 19rem
+            min-width: 19rem
         @include breakpoints.break_SM()
-            height: 15.5rem
-            width: 80vw
+            min-height: 15.5rem
+            min-width: 80vw
             margin-bottom: 0.8rem
         .title_compo
             position: absolute
@@ -40,7 +40,7 @@
             font-family: "Sora_SM"
             color: var(--primary)
             justify-content: flex-start
-            width: 100%
+            width: fit-content
             @include breakpoints.break_MD()
                 font-size: 0.86rem
             @include breakpoints.break_SM()
@@ -50,6 +50,7 @@
                 position: absolute
                 bottom: -25%
                 left: 0
-                width: 15%
-                height: 1px
+                min-width: 55%
+                min-height: 1px
+                width: 55%
                 background: var(--primary)

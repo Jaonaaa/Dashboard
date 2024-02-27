@@ -176,7 +176,12 @@ const useIdentity = (addNotifs) => {
 export const getHeaderAuthJWT = () => ({
   headers: {
     Authorization: "Bearer " + tokenStocked,
-    contentTypeHeaders,
+    ...contentTypeHeaders,
+  },
+});
+export const getHeaderAuth = () => ({
+  headers: {
+    ...contentTypeHeaders,
   },
 });
 

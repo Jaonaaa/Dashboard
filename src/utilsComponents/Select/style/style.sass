@@ -46,9 +46,30 @@
             white-space: nowrap
             overflow: hidden
             text-overflow: ellipsis
+            position: relative
+            display: flex
+            justify-content: space-between
+
             color: var(--text-bold-color)
             @include breakpoints.break_MD()
                 font-size: 0.82rem
+            .count
+                width: 1.1rem
+                height: 1.1rem
+                border-radius: 50%
+                background: var(--primary)
+                color: #fff
+                position: absolute
+                right: 5%
+                top: 50%
+                display: flex
+                justify-content: center
+                align-items: center
+                font-size: 0.6rem
+                transform: translateY(-50%)
+                font-family: "Sora_R"
+                font-weight: bolder
+                border: 1px solid var(--primary)
         .icon
             display: flex
             justify-content: center
@@ -96,6 +117,30 @@
                 font-size: 0.82rem
             &:hover
                 background: var(--bg-color-hovered)
+            .check_round
+                display: flex
+                justify-content: center
+                align-items: center
+                width: 0.85rem
+                height: 0.85rem
+                border-radius: 50%
+                box-shadow: 0 0 0.1rem 0.1rem var(--primary)
+                margin-right: 0.75rem
+                .state
+                    display: flex
+                    width: 0.5rem
+                    height: 0.5rem
+                    transition: all 0.2s ease-in-out
+                    background: var(--primary)
+                    border-radius: 50%
+                    opacity: 0.2
+                    transform: scale(0.8)
+
+                .on
+                    background: var(--primary-hovered)
+                    opacity: 1
+                    transform: scale(1.1)
+
     .box_show
         box-shadow: 0 0 0.1rem 0.1rem #a9a7a736
 .fullWidth

@@ -1,7 +1,7 @@
 import React from "react";
 import FormSignIn from "./FormSignIn/FormSignIn";
-import "./Login.sass";
 import FormSignUp from "./FormSignUp/FormSignUp";
+import "./Login.sass";
 
 const Login = () => {
   return (

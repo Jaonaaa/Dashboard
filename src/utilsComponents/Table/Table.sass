@@ -62,6 +62,31 @@
                 padding-left: 0.7rem
             @include breakpoints.break_SM()
                 font-size: 0.74rem
+            .icon_row_table
+                display: flex
+                align-items: center
+                justify-content: center
+                width: 1.4rem
+                height: 1.4rem
+                padding: 0.1rem
+                border-radius: 50%
+                svg
+                    path
+                        fill: #fff
+            .checked
+                background: var(--primary)
+            .unchecked
+                background: #fe4c4c
+
+                @include breakpoints.break_MD()
+                    width: 1.2rem
+                    height: 1.2rem
+                @include breakpoints.break_SM()
+                    width: 1.1rem
+                    height: 1.1rem
+        .check_round
+
+        .icon_tri
         .tab_row
             height: 3.5rem
             @include breakpoints.break_SM()

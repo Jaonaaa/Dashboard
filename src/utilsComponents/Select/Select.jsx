@@ -1,7 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./style/style.sass";
 
-const Select = ({ optionsType, name, onChange, fullWidth, title, caretIcon = <CaretDownIcon /> }) => {
+const Select = ({
+  optionsType,
+  name,
+  onChange,
+  fullWidth,
+  title,
+  caretIcon = <CaretDownIcon />,
+  multiple = false,
+  placeholder = "",
+}) => {
   const [selectedOption, setSelectedOption] = useState(
     optionsType.length > 0
       ? {
@@ -10,6 +19,8 @@ const Select = ({ optionsType, name, onChange, fullWidth, title, caretIcon = <Ca
         }
       : { value: "", label: "" }
   );
+  const [indexSelected, setIndexSelected] = useState([]);
+
   const longContent = useRef(null);
   const [openOptions, setOpenOptions] = useState(false);
   const heightNecessary = 16 * 2.6 * optionsType.length;
@@ -27,17 +38,27 @@ const Select = ({ optionsType, name, onChange, fullWidth, title, caretIcon = <Ca
           }
         : { value: "", label: "" }
     );
-    if (optionsType.length > 0) onChange({ target: { name: name, value: optionsType[0].value } });
+    if (optionsType.length > 0)
+      if (multiple) console.log("");
+      else onChange({ target: { name: name, value: optionsType[0].value } });
   }, [optionsType]);
 
   useEffect(() => {
-    let width = longContent.current.getBoundingClientRect().width;
+    let width = longContent.current.getBoundingClientRect().width + (multiple ? 40 : 0);
     setWidthNecessary(width + 3.4 * 16);
   }, [optionsType]);
 
   const handleOpen = () => {
     if (openOptions) setOpenOptions(false);
     else setOpenOptions(true);
+  };
+
+  const handleSelectedIndex = (index) => {
+    let selects = [];
+    if (indexSelected.includes(index)) {
+      selects = indexSelected.filter((ele) => ele !== index);
+    } else selects = [...indexSelected, index];
+    setIndexSelected(selects);
   };
 
   return (
@@ -54,7 +75,18 @@ const Select = ({ optionsType, name, onChange, fullWidth, title, caretIcon = <Ca
           <input type="hidden" value={selectedOption.value} name={name} />
           <div className="container_label" onClick={handleOpen}>
             <div className="text" style={{ width: widthNecessary }}>
-              {selectedOption.label}
+              {multiple ? (placeholder !== "" ? placeholder : name) : selectedOption.label}
+              {multiple ? (
+                indexSelected.length > 0 ? (
+                  <>
+                    <div className="count"> {indexSelected.length}</div>
+                  </>
+                ) : (
+                  ""
+                )
+              ) : (
+                ""
+              )}
               <div className="hiddenText" ref={longContent}>
                 {longestText}
               </div>
@@ -81,9 +113,24 @@ const Select = ({ optionsType, name, onChange, fullWidth, title, caretIcon = <Ca
                 key={index}
                 onClick={() => {
                   setSelectedOption(option);
-                  if (onChange) onChange({ target: { name: name, value: option.value } });
+                  if (onChange)
+                    if (multiple) {
+                      ///
+                      handleSelectedIndex(index);
+                    } else {
+                      onChange({ target: { name: name, value: option.value } });
+                      handleOpen();
+                    }
                 }}
               >
+                {multiple && (
+                  <>
+                    <div className="check_round">
+                      <div className={`state ${indexSelected.includes(index) ? "on" : "off"}`}></div>
+                    </div>
+                  </>
+                )}
+
                 {option.label}
               </div>
             ))}

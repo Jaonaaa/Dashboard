@@ -8,7 +8,7 @@ import Home from "./components/Home/Home";
 
 import Table, { dataDefault } from "./utilsComponents/Table/Table";
 import Login from "./components/Login/Login";
-import CustomChart from "./utilsComponents/Chart/CustomChart";
+import Graphs from "./components/Graphs/Graphs";
 import "./App.sass";
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
           path="/chat"
           element={
             <ContentContainer>
-              <CustomChart />
+              <Graphs />
             </ContentContainer>
           }
         />

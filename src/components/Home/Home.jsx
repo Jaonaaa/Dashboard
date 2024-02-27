@@ -11,6 +11,7 @@ import ValidationModal from "../../utilsComponents/Modal/Validation/ValidationMo
 import { variantItem, variantTable } from "../../utilsComponents/Variants";
 import "./Home.sass";
 import BoxTitle from "../../utilsComponents/Box/BoxTitle/BoxTitle";
+import Loader from "../../utilsComponents/Hider/Loader/Loader";
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -63,13 +64,18 @@ const Home = () => {
       </motion.div>
       {/* INPUT */}
       <motion.div className="component_box" variants={variantItem} transition={"transition"}>
-        <Input onChange={() => {}} title={"Name"} name="title" />
+        <Input onChange={(e) => {}} type="text" title={"Title"} name="name" />
         <div className="title_compo">Input </div>
       </motion.div>
-      {/* SPINNER */}
+      {/* INPUT */}
       <motion.div className="component_box" variants={variantItem} transition={"transition"}>
-        <Spinner On={true} size="5rem" />
-        <div className="title_compo">Spinner</div>
+        <Input onChange={(e) => {}} type="checkbox" title={"Title"} name="name" />
+        <div className="title_compo">Input checkbox</div>
+      </motion.div>
+      {/* LOADER */}
+      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
+        <Loader />
+        <div className="title_compo">Loader</div>
       </motion.div>
       {/* DROPDOWN */}
       <motion.div className="component_box" variants={variantItem} transition={"transition"}>
@@ -81,6 +87,19 @@ const Home = () => {
           optionsType={options}
         />
         <div className="title_compo">Dropdown</div>
+      </motion.div>
+      {/* DROPDOWN */}
+      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
+        <Select
+          onChange={(e) => {
+            console.log(e);
+          }}
+          multiple
+          name={"select_input"}
+          optionsType={options}
+          placeholder="Examples"
+        />
+        <div className="title_compo">Dropdown ( mutiple )</div>
       </motion.div>
       {/* METHOD AND THEMES SWITCHER */}
       <motion.div className="component_box" variants={variantItem} transition={"transition"}>

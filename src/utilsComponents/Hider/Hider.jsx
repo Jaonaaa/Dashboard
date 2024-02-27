@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
-import "./Hider.sass";
 import Loader from "./Loader/Loader";
+import "./Hider.sass";
 
 // interface HiderProps {
 //   children?: ReactNode;
@@ -10,7 +10,6 @@ import Loader from "./Loader/Loader";
 //   classCss?: string;
 //   animate?: "default" | "showUp";
 // }
-
 
 const variantHiderBlank = {
   hidden: {
@@ -23,6 +22,7 @@ const variantHiderBlank = {
     opacity: "0%",
   },
 };
+
 const variantHiderShowUp = {
   hidden: {
     opacity: "0%",
@@ -64,6 +64,7 @@ const showState = {
     },
   },
 };
+
 const Hider = (props) => {
   const { loader, classCss, animate } = props;
   const hider = document.getElementById("hider_portal");
@@ -79,6 +80,5 @@ const Hider = (props) => {
 
   if (hider) return createPortal(hiderComponent, hider);
 };
-
 
 export default Hider;
