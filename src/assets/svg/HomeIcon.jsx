@@ -2,12 +2,7 @@ import React from "react";
 
 const HomeIcon = () => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="43"
-      height="43"
-      viewBox="0 0 43 43"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43">
       <g id="Groupe_9" data-name="Groupe 9" transform="translate(-94 -176)">
         <rect
           id="Rectangle_12"
@@ -17,11 +12,7 @@ const HomeIcon = () => {
           transform="translate(94 176)"
           fill="rgba(255,255,255,0)"
         />
-        <g
-          id="Icon_feather-home"
-          data-name="Icon feather-home"
-          transform="translate(107.778 188.92)"
-        >
+        <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(107.778 188.92)">
           <path
             id="Tracé_2"
             data-name="Tracé 2"

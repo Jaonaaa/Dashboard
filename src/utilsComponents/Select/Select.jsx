@@ -39,8 +39,8 @@ const Select = ({
         : { value: "", label: "" }
     );
     if (optionsType.length > 0)
-      if (multiple) console.log("");
-      else onChange({ target: { name: name, value: optionsType[0].value } });
+      if (multiple) {
+      } else onChange({ target: { name: name, value: optionsType[0].value } });
   }, [optionsType]);
 
   useEffect(() => {

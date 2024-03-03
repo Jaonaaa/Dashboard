@@ -1,3 +1,4 @@
+@use '../../../breakpoints'
 .horiz_container
     display: flex
     justify-content: flex-start
@@ -9,6 +10,11 @@
         margin-bottom: 1.5rem
         font-size: 1.5rem
         font-weight: bolder
+        transition: all 0.2s ease-in-out
+        @include breakpoints.break_MD()
+            font-size: 1.2rem
+        @include breakpoints.break_SM()
+            font-size: 1rem
 
     .container_content
         display: flex
@@ -18,3 +24,14 @@
         background: var( --bg-color)
         border-radius: 1.2rem
         padding: 2.2rem 1.5rem
+        flex-wrap: wrap
+        transition: all 0.2s ease-in-out
+        @include breakpoints.break_LG()
+            justify-content: center
+        @include breakpoints.break_MD()
+            padding: 1.8rem 0.9rem
+            justify-content: center
+        @include breakpoints.break_SM()
+            padding: 1.5rem 0.5rem
+        @include breakpoints.break_XSM()
+            padding: 1.2rem 0.4rem

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { variantItem, variantTable } from "../Variants";
+import { variantItem, variantContainerStag } from "../Variants";
 import CheckIcon from "../../assets/icons/CheckIcon";
 import CrossIcon from "../../assets/icons/CrossIcon";
 import "./Table.sass";
@@ -11,7 +11,6 @@ const isBooleanString = (str) => {
 };
 
 const BooleanMark = (value) => {
-  console.log(value);
   return (
     <>
       {value + "" === "true" ? (
@@ -42,45 +41,47 @@ const Table = ({ headerOn, body = [], index = [], titles = [], classes = [] }) =
           <div className="under_container">{headerOn.under_component}</div>
         </>
       )}
-      <motion.table variants={variantTable} initial={"hidden"} animate={"visible"}>
-        <thead>
-          <tr>
-            {titles.map((title, i) => (
-              <th className="head_th" key={i}>
-                {title}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        {body.map((row, i) => {
-          const column = index.map((ind, ind__) => {
-            let value = row;
-            if (Array.isArray(ind)) {
-              for (let i = 0; i < ind.length; i++) {
-                value = value[ind[i]];
-              }
-            } else value = value[ind];
+      <div className="table_container_">
+        <motion.table variants={variantContainerStag} initial={"hidden"} animate={"visible"}>
+          <thead>
+            <tr>
+              {titles.map((title, i) => (
+                <th className="head_th" key={i}>
+                  {title}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          {body.map((row, i) => {
+            const column = index.map((ind, ind__) => {
+              let value = row;
+              if (Array.isArray(ind)) {
+                for (let i = 0; i < ind.length; i++) {
+                  value = value[ind[i]];
+                }
+              } else value = value[ind];
+
+              return (
+                <td key={ind__} className={classes[ind__]}>
+                  {isBooleanString(value) ? BooleanMark(value) : value}
+                </td>
+              );
+            });
 
             return (
-              <td key={ind__} className={classes[ind__]}>
-                {isBooleanString(value) ? BooleanMark(value) : value}
-              </td>
+              <tbody key={i}>
+                <motion.tr
+                  className={`tab_row ${(2 + i) % 2 === 0 ? "one" : "two"}`}
+                  variants={variantItem}
+                  transition={"transition"}
+                >
+                  {column}
+                </motion.tr>
+              </tbody>
             );
-          });
-
-          return (
-            <tbody key={i}>
-              <motion.tr
-                className={`tab_row ${(2 + i) % 2 === 0 ? "one" : "two"}`}
-                variants={variantItem}
-                transition={"transition"}
-              >
-                {column}
-              </motion.tr>
-            </tbody>
-          );
-        })}
-      </motion.table>
+          })}
+        </motion.table>
+      </div>
     </div>
   );
 };
@@ -92,8 +93,8 @@ export const dataDefault = {
   body: [
     ["Lorem ing elit.", "Lorem ing elit.", "true", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
     ["Lorem ing elit.", "Lorem ing elit.", "false", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
-    ["Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
-    ["Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
+    ["Lorem ing elit.", "Lorem ing elit.", "false", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
+    ["Lorem ing elit.", "Lorem ing elit.", "true", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
   ],
 };
 

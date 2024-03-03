@@ -9,11 +9,12 @@ import Home from "./components/Home/Home";
 import Table, { dataDefault } from "./utilsComponents/Table/Table";
 import Login from "./components/Login/Login";
 import Graphs from "./components/Graphs/Graphs";
+import ComponentContainer from "./components/ComponentContainer/ComponentContainer";
 import "./App.sass";
 
 function App() {
   useDefaultTheme();
-  const { addNotifs, notifs } = useMyNotifs();
+  const { notifs } = useMyNotifs();
   return (
     <div className="App">
       {notifs.map((notif) => notif)}
@@ -52,6 +53,14 @@ function App() {
           }
         />
         <Route path="/something" element={<ContentContainer></ContentContainer>} />
+        <Route
+          path="/components"
+          element={
+            <ContentContainer>
+              <ComponentContainer />
+            </ContentContainer>
+          }
+        />
         <Route
           path="/login"
           element={
