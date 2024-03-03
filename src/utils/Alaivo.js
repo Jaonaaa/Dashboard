@@ -1,4 +1,4 @@
-import { getHeaderAuthJWT } from "../hooks/useIdentity";
+import { getHeaderAuth, getHeaderAuthJWT } from "../hooks/useIdentity";
 
 export const URL = "http://localhost:8085/";
 
@@ -8,7 +8,7 @@ const rebuildURL = (url = "") => {
 };
 
 export const alaivoGet = async (url = "", options, noAuth = false) => {
-  let auth = !noAuth ? getHeaderAuthJWT() : null;
+  let auth = !noAuth ? getHeaderAuthJWT() : getHeaderAuth();
 
   return new Promise((resolve, reject) => {
     fetch(rebuildURL(url), {
@@ -24,22 +24,8 @@ export const alaivoGet = async (url = "", options, noAuth = false) => {
   });
 };
 
-export const alaivoPDF = async (url = "", options, noAuth = false) => {
-  let auth = !noAuth ? getHeaderAuthJWT() : null;
-
-  return new Promise((resolve, reject) => {
-    fetch(rebuildURL(url), {
-      method: "GET",
-      ...auth,
-      ...options,
-    })
-      .then((response) => console.log(response))
-      .catch((error) => reject(error));
-  });
-};
-
 export const alaivoDelete = async (url = "", data, options, noAuth = false) => {
-  let auth = !noAuth ? getHeaderAuthJWT() : null;
+  let auth = !noAuth ? getHeaderAuthJWT() : getHeaderAuth();
   return new Promise((resolve, reject) => {
     fetch(rebuildURL(url), {
       method: "DELETE",
@@ -56,7 +42,7 @@ export const alaivoDelete = async (url = "", data, options, noAuth = false) => {
 };
 
 export const alaivoPut = (url = "", data, options, noAuth = false) => {
-  let auth = !noAuth ? getHeaderAuthJWT() : null;
+  let auth = !noAuth ? getHeaderAuthJWT() : getHeaderAuth();
   return new Promise((resolve, reject) => {
     fetch(rebuildURL(url), {
       method: "PUT",
@@ -75,7 +61,7 @@ export const alaivoPut = (url = "", data, options, noAuth = false) => {
 };
 
 export const alaivoPost = (url = "", data, options, noAuth = false) => {
-  let auth = !noAuth ? getHeaderAuthJWT() : null;
+  let auth = !noAuth ? getHeaderAuthJWT() : getHeaderAuth();
 
   return new Promise((resolve, reject) => {
     fetch(rebuildURL(url), {

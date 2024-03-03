@@ -5,6 +5,7 @@ import HomeIcon from "../../assets/svg/HomeIcon";
 import OverviewIcon from "../../assets/svg/OverviewIcon";
 import SettingsIcon from "../../assets/svg/SettingsIcon";
 import ShopIcon from "../../assets/svg/ShopIcon";
+import ComponentIcon from "../../assets/svg/ComponentIcon";
 
 //Aza adino le "/" aloha path rehetra
 const linksNavData = [
@@ -46,6 +47,12 @@ const linksNavData = [
     type: "menu",
     menuLabel: "Main menu",
     rows: [
+      {
+        type: "link",
+        linkTo: "/components",
+        label: "Components",
+        icon: <ComponentIcon />,
+      },
       {
         type: "link",
         linkTo: "/something",
