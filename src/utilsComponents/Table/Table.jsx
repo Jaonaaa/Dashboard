@@ -88,13 +88,13 @@ const Table = ({ headerOn, body = [], index = [], titles = [], classes = [] }) =
 
 export const dataDefault = {
   headerOn: { title: "Active users ", under_component: "" },
-  titles: ["Name", "Email", "Total downloads", "Available", "Test unit", "", ""],
-  index: [0, 1, 2, 3, 4, 5],
+  titles: ["Name", "Email", "Total downloads", "Available", "Hehe :3 "],
+  index: [0, 1, 2, 3, ["test", "po"]],
   body: [
-    ["Lorem ing elit.", "Lorem ing elit.", "true", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
-    ["Lorem ing elit.", "Lorem ing elit.", "false", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
-    ["Lorem ing elit.", "Lorem ing elit.", "false", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
-    ["Lorem ing elit.", "Lorem ing elit.", "true", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
+    ["Lorem ing elit.", "Lorem ing elit.", "true", "Lorem ing elit.", { test: { po: "mety" } }],
+    ["Lorem ing elit.", "Lorem ing elit.", "false", "Lorem ing elit.", { test: { po: "mety" } }],
+    ["Lorem ing elit.", "Lorem ing elit.", "false", "Lorem ing elit.", { test: { po: "mety" } }],
+    ["Lorem ing elit.", "Lorem ing elit.", "true", "Lorem ing elit.", { test: { po: "mety" } }],
   ],
 };
 
