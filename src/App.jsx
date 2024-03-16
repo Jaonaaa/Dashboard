@@ -11,6 +11,7 @@ import Login from "./components/Login/Login";
 import Graphs from "./components/Graphs/Graphs";
 import ComponentContainer from "./components/ComponentContainer/ComponentContainer";
 import "./App.sass";
+import PDFBuilder from "./components/PDFBuilder/PDFBuilder";
 
 function App() {
   useDefaultTheme();
@@ -36,10 +37,17 @@ function App() {
             </ContentContainer>
           }
         />
-        <Route path="Home/Test/example_1" element={<ContentContainer></ContentContainer>} />{" "}
+        {/* <Route path="Home/Test/example_1" element={<ContentContainer></ContentContainer>} />{" "} */}
         <Route path="/example_11" element={<ContentContainer></ContentContainer>} />
         <Route path="/test">
-          <Route path="example_1" element={<ContentContainer></ContentContainer>} />
+          <Route
+            path="example_1"
+            element={
+              <ContentContainer>
+                <PDFBuilder />
+              </ContentContainer>
+            }
+          />
           <Route path="example_2" element={<ContentContainer></ContentContainer>} />
         </Route>
         <Route

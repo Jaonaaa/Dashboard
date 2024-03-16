@@ -33,7 +33,7 @@ const linksNavData = [
         sublinks: [
           {
             label: "Example 1",
-            linkTo: "/Home/Test/example_1",
+            linkTo: "/test/example_1",
           },
           {
             label: "Example 2",

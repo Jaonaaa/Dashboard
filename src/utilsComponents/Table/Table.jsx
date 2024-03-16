@@ -10,26 +10,6 @@ const isBooleanString = (str) => {
   return lowerCaseStr === "true" || lowerCaseStr === "false";
 };
 
-const BooleanMark = (value) => {
-  return (
-    <>
-      {value + "" === "true" ? (
-        <>
-          <div className="icon_row_table checked">
-            <CheckIcon />
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="icon_row_table unchecked">
-            <CrossIcon />
-          </div>
-        </>
-      )}
-    </>
-  );
-};
-
 const Table = ({ headerOn, body = [], index = [], titles = [], classes = [] }) => {
   return (
     <div className="table_container">
@@ -88,14 +68,34 @@ const Table = ({ headerOn, body = [], index = [], titles = [], classes = [] }) =
 
 export const dataDefault = {
   headerOn: { title: "Active users ", under_component: "" },
-  titles: ["Name", "Email", "Total downloads", "Available", "Test unit", "", ""],
-  index: [0, 1, 2, 3, 4, 5],
+  titles: ["Name", "Email", "Total downloads", "Available", "Hehe :3 "],
+  index: [0, 1, 2, 3, ["test", "po"]],
   body: [
-    ["Lorem ing elit.", "Lorem ing elit.", "true", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
-    ["Lorem ing elit.", "Lorem ing elit.", "false", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
-    ["Lorem ing elit.", "Lorem ing elit.", "false", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
-    ["Lorem ing elit.", "Lorem ing elit.", "true", "Lorem ing elit.", "Lorem ing elit.", "Lorem ing elit."],
+    { 0: "Lorem ing elit.", 1: "Lorem ing elit.", 2: "true", 3: "Lorem ing elit.", test: { po: "mety" } },
+    { 0: "Lorem ing elit.", 1: "Lorem ing elit.", 2: "false", 3: "Lorem ing elit.", test: { po: "mety ds" } },
+    { 0: "Lorem ing elit.", 1: "Lorem ing elit.", 2: "false", 3: "Lorem ing elit.", test: { po: "mety" } },
+    { 0: "Lorem ing elit.", 1: "Lorem ing elit.", 2: "true", 3: "Lorem ing elit.", test: { po: "mety" } },
   ],
+};
+
+const BooleanMark = (value) => {
+  return (
+    <>
+      {value + "" === "true" ? (
+        <>
+          <div className="icon_row_table checked">
+            <CheckIcon />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="icon_row_table unchecked">
+            <CrossIcon />
+          </div>
+        </>
+      )}
+    </>
+  );
 };
 
 export default Table;
