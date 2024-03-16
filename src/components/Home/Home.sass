@@ -1,4 +1,9 @@
 @use '../../breakpoints'
+
+@mixin break_Grid()
+    @media (max-width: 1400px)
+        @content
+
 .container_home_main
     display: flex
     flex-wrap: wrap
@@ -22,3 +27,20 @@
             align-items: center
             min-height: 15rem
             max-height: none
+    .grid_row
+        display: grid
+        width: 100%
+        margin: auto
+        // grid-template-columns: 1fr 1fr 1fr 1fr
+        grid-template-columns: repeat(auto-fit, minmax(25%,25%))
+        grid-auto-rows: 10rem
+        justify-content: center
+        gap: 2rem 1rem
+        @include break_Grid()
+            grid-template-columns: repeat(auto-fit, minmax(25rem,30%) )
+        @include breakpoints.break_LG()
+            grid-template-columns: repeat(auto-fit, minmax(29rem,23%) )
+        @include breakpoints.break_MD()
+            grid-template-columns: repeat(auto-fit, 100% )
+        @include breakpoints.break_SM()
+            grid-template-columns: repeat(auto-fit, 100% )

@@ -1,27 +1,18 @@
 import React, { useState } from "react";
-import { Document, Page, Text, View, StyleSheet, PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
-import ReactPDF from "@react-pdf/renderer";
-import Home from "../Home/Home";
-import Table, { dataDefault } from "../../utilsComponents/Table/Table";
-import Input from "../../utilsComponents/Input/Input";
+import { Document, Page, Text, View, PDFViewer, PDFDownloadLink, Font } from "@react-pdf/renderer";
+import { dataDefault } from "../../utilsComponents/Table/Table";
 import Loader from "../../utilsComponents/Hider/Loader/Loader";
 import Modal from "../../utilsComponents/Modal/Modal";
 import { AnimatePresence } from "framer-motion";
+import Poppins from "../../assets/fonts/Poppins-Light.ttf";
+import SoraSM from "../../assets/fonts/Sora-SemiBold.ttf";
+import { styles } from "./style";
+
+Font.register({ family: "Poppins", fonts: [{ src: Poppins }, { src: SoraSM, fontWeight: "bold" }] });
 
 // Create styles
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: "column",
-    backgroundColor: "#fff",
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    fontSize: 10,
-  },
-});
 
-const PdfTest = () => {
+const PDFBuilder = () => {
   const [showPDF, setShowPDF] = useState(true);
   const handlePdfView = () => {
     setShowPDF(!showPDF);
@@ -59,6 +50,7 @@ const MyDocument = () => (
 
 const TablePdf = ({ body = [], index = [], titles = [] }) => {
   const lengths = getColumnLength(index, titles, body);
+  const rowValues = getValues(index, body);
   return (
     <View style={styles.section}>
       <View style={{ display: "flex", flexDirection: "row", width: "100%" }}>
@@ -67,7 +59,7 @@ const TablePdf = ({ body = [], index = [], titles = [] }) => {
             key={i}
             style={{
               width: lengths[i],
-              //   fontWeight: "bold",
+              fontWeight: "bold",
               padding: "10px 12px 10px 4px",
             }}
           >
@@ -76,25 +68,18 @@ const TablePdf = ({ body = [], index = [], titles = [] }) => {
         ))}
       </View>
       <View style={{ borderBottom: "0.9px solid #000", width: "100%" }} />
-      {body.map((row, i) => (
+      {rowValues.map((row, i) => (
         <View
           key={i}
           style={{
             display: "flex",
-            backgroundColor: i % 2 === 0 ? "#e3e7e7" : "",
+            backgroundColor: i % 2 === 0 ? "#f0f7f8" : "",
             flexDirection: "row",
             width: "100%",
-            borderBottom: "0.2px solid #e3e7e7",
+            borderBottom: "0.2px solid #f0f7f8",
           }}
         >
-          {row.map((cell, j) => {
-            let text = cell;
-            if (Array.isArray(index[j])) {
-              for (let o = 0; o < index[j].length; o++) {
-                text = text[index[j][o]];
-              }
-            }
-            console.log(lengths[j]);
+          {row.map((text, j) => {
             return (
               <Text
                 key={j}
@@ -122,21 +107,36 @@ const getColumnLength = (index = [], titles = [], body = [], fontSize = 10) => {
     checkIfHigher(lengths, i, length);
   }
 
+  let rowValues = getValues(index, body);
+  for (let i = 0; i < rowValues.length; i++) {
+    for (let o = 0; o < rowValues[i].length; o++) {
+      let text = rowValues[i][o];
+      let length = (text + "").length * fontSize;
+      checkIfHigher(lengths, o, length);
+    }
+  }
+
+  return lengths;
+};
+
+const getValues = (index = [], body = []) => {
+  let rows = [];
   for (let u = 0; u < body.length; u++) {
     let row = body[u];
-    for (let i = 0; i < row.length; i++) {
+    let values = [];
+    for (let i = 0; i < index.length; i++) {
       let text = row[i];
       if (Array.isArray(index[i])) {
+        text = row;
         for (let o = 0; o < index[i].length; o++) {
           text = text[index[i][o]];
         }
       }
-      let length = (text + "").length * fontSize;
-      checkIfHigher(lengths, i, length);
+      values.push(text);
     }
+    rows.push(values);
   }
-  console.log(lengths);
-  return lengths;
+  return rows;
 };
 
 const checkIfHigher = (tab = [], index, newValue) => {
@@ -144,4 +144,4 @@ const checkIfHigher = (tab = [], index, newValue) => {
     tab[index] = newValue;
   }
 };
-export default PdfTest;
+export default PDFBuilder;

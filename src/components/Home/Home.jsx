@@ -15,15 +15,19 @@ const Home = () => {
             <Banner />
             <ActuSwiper />
           </motion.div>
+
           <motion.div
-            className="row"
+            className="row grid_row"
             variants={variantContainerStag}
-            style={{ minHeight: "fit-content", justifyContent: "flex-start", flexWrap: "wrap" }}
+            style={{ minHeight: "fit-content", justifyContent: "center" }}
           >
             <PerspectiveBox />
             <PerspectiveBox bubbleBg="red" />
             <PerspectiveBox bubbleBg="green" />
             <PerspectiveBox bubbleBg="yellow" />
+            <PerspectiveBox bubbleBg="green" />
+            <PerspectiveBox bubbleBg="yellow" />
+            <PerspectiveBox bubbleBg="green" />
           </motion.div>
         </motion.div>
       </div>

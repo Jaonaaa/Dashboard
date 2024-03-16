@@ -11,7 +11,7 @@ import Login from "./components/Login/Login";
 import Graphs from "./components/Graphs/Graphs";
 import ComponentContainer from "./components/ComponentContainer/ComponentContainer";
 import "./App.sass";
-import PdfTest from "./components/PdfTest/PdfTest";
+import PDFBuilder from "./components/PDFBuilder/PDFBuilder";
 
 function App() {
   useDefaultTheme();
@@ -44,7 +44,7 @@ function App() {
             path="example_1"
             element={
               <ContentContainer>
-                <PdfTest />
+                <PDFBuilder />
               </ContentContainer>
             }
           />
