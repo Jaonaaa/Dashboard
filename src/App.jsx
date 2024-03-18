@@ -8,10 +8,16 @@ import Home from "./components/Home/Home";
 
 import Table, { dataDefault } from "./utilsComponents/Table/Table";
 import Login from "./components/Login/Login";
-import Graphs from "./components/Graphs/Graphs";
-import ComponentContainer from "./components/ComponentContainer/ComponentContainer";
+import ArtisticGender from "./components/Add/ArtisticGender/ArtisticGender";
+import ArtworkType from "./components/Add/ArtwokType/ArtworkType";
+import Category from "./components/Add/Category/Category";
+import Colors from "./components/Add/Colors/Colors";
+import AddSubjectExpo from "./components/Expo/Add_/AddSubjectExpo";
+import List from "./components/Expo/List/List";
+import AddExpo from "./components/Expo/Add_/AddExpo";
 import "./App.sass";
-import PDFBuilder from "./components/PDFBuilder/PDFBuilder";
+import Validation from "./components/Validation/Validation";
+import Overview from "./components/Overview/Overview";
 
 function App() {
   useDefaultTheme();
@@ -21,54 +27,23 @@ function App() {
       {notifs.map((notif) => notif)}
       <Navbar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ContentContainer>
-              <Home />
-            </ContentContainer>
-          }
-        />
-        <Route
-          path="/chat"
-          element={
-            <ContentContainer>
-              <Graphs />
-            </ContentContainer>
-          }
-        />
-        {/* <Route path="Home/Test/example_1" element={<ContentContainer></ContentContainer>} />{" "} */}
-        <Route path="/example_11" element={<ContentContainer></ContentContainer>} />
-        <Route path="/test">
-          <Route
-            path="example_1"
-            element={
-              <ContentContainer>
-                <PDFBuilder />
-              </ContentContainer>
-            }
-          />
-          <Route path="example_2" element={<ContentContainer></ContentContainer>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/overview" element={<Overview />} />
+        <Route path="/validation" element={<Validation />} />
+
+        <Route path="/add">
+          <Route path="artistic_gender" element={<ArtisticGender />} />
+          <Route path="artwork_type" element={<ArtworkType />} />
+          <Route path="category" element={<Category />} />
+          <Route path="colors" element={<Colors />} />
         </Route>
-        <Route
-          path="/overview"
-          element={
-            <ContentContainer>
-              <div className="inner">
-                <Table {...dataDefault} />
-              </div>
-            </ContentContainer>
-          }
-        />
-        <Route path="/something" element={<ContentContainer></ContentContainer>} />
-        <Route
-          path="/components"
-          element={
-            <ContentContainer>
-              <ComponentContainer />
-            </ContentContainer>
-          }
-        />
+
+        <Route path="/expo">
+          <Route path="list" element={<List />} />
+          <Route path="add_subject" element={<AddSubjectExpo />} />
+          <Route path="add" element={<AddExpo />} />
+        </Route>
+
         <Route
           path="/login"
           element={
@@ -77,7 +52,6 @@ function App() {
             </>
           }
         />
-        <Route path="/settings" element={<ContentContainer></ContentContainer>} />
       </Routes>
     </div>
   );

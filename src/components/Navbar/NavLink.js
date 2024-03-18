@@ -1,11 +1,6 @@
-import ArchiveIcon from "../../assets/svg/ArchiveIcon";
 import BellIcon from "../../assets/svg/BellIcon";
-import ChatIcon from "../../assets/svg/ChatIcon";
 import HomeIcon from "../../assets/svg/HomeIcon";
 import OverviewIcon from "../../assets/svg/OverviewIcon";
-import SettingsIcon from "../../assets/svg/SettingsIcon";
-import ShopIcon from "../../assets/svg/ShopIcon";
-import ComponentIcon from "../../assets/svg/ComponentIcon";
 
 //Aza adino le "/" aloha path rehetra
 const linksNavData = [
@@ -24,72 +19,60 @@ const linksNavData = [
         linkTo: "/overview",
         label: "Overview",
         icon: <OverviewIcon />,
-        info: 10,
-      },
-      {
-        type: "link_list",
-        label: "Notification",
-        icon: <BellIcon />,
-        sublinks: [
-          {
-            label: "Example 1",
-            linkTo: "/test/example_1",
-          },
-          {
-            label: "Example 2",
-            linkTo: "/test/example_2",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    type: "menu",
-    menuLabel: "Main menu",
-    rows: [
-      {
-        type: "link",
-        linkTo: "/components",
-        label: "Components",
-        icon: <ComponentIcon />,
-      },
-      {
-        type: "link",
-        linkTo: "/something",
-        label: "Something very long",
-        icon: <ArchiveIcon />,
       },
       {
         type: "link_info",
-        linkTo: "/chat",
-        label: "Chat",
-        icon: <ChatIcon />,
-        info: 10,
+        linkTo: "/validation",
+        label: "Validation",
+        icon: <OverviewIcon />,
+        info: "",
       },
       {
         type: "link_list",
-        label: "Shop",
-        icon: <ShopIcon />,
+        label: "Add ",
+        icon: <BellIcon />,
         sublinks: [
           {
-            label: "Example 11",
-            linkTo: "/example_11",
+            label: "Artistic Gender",
+            linkTo: "/add/artistic_gender",
+          },
+          {
+            label: "Artwork Type",
+            linkTo: "/add/artwork_type",
+          },
+          {
+            label: "Category",
+            linkTo: "/add/category",
+          },
+          {
+            label: "Colors and Palette",
+            linkTo: "/add/colors",
+          },
+        ],
+      },
+      {
+        type: "link_list",
+        label: "Exposition",
+        icon: <BellIcon />,
+        sublinks: [
+          {
+            label: "List",
+            linkTo: "/expo/list",
+          },
+          {
+            label: "Add",
+            linkTo: "/expo/add",
+          },
+          {
+            label: "Add Subject",
+            linkTo: "/expo/add_subject",
           },
         ],
       },
     ],
   },
-  {
-    type: "single",
-    row: {
-      type: "link",
-      linkTo: "/settings",
-      label: "Settings",
-      icon: <SettingsIcon />,
-    },
-  },
 ];
 
-export const link_to_hide_nav = ["/settings", "/something", "/login"];
+export const link_to_hide_nav = [];
 
 export default linksNavData;

@@ -48,3 +48,15 @@ $breakpoint-xl: 1500px
     @include media($breakpoint:$breakpoint-sm )
         min-width: 13rem
         height: 13rem
+
+.skeleton
+    animation: skeleton-loading 1s linear infinite alternate
+
+@keyframes skeleton-loading
+
+    from
+        background-color: hsl(0deg 1.41% 28.72%)
+        color: transparent
+    to
+        background-color: hsl(0deg 1.83% 36.41% / 74%)
+        color: transparent

@@ -67,16 +67,16 @@ function Input(props) {
   };
 
   const DefaultvalueFile = () => {
-    if (type === "file" && defaultValue !== "" && defaultValue.length > 0) {
-      let pathFileLoaded = URL.createObjectURL(defaultValue[defaultValue.length - 1]);
+    if (type === "file" && defaultValue !== "" && defaultValue) {
+      let pathFileLoaded = URL.createObjectURL(defaultValue);
       setFilePreview(pathFileLoaded);
     } else setFileLoaded(false);
   };
 
   useEffect(() => {
     setValue(defaultValue);
-    DefaultvalueFile();
-    onChange({ target: { value: defaultValue, name: name } });
+    if (type === "file") DefaultvalueFile();
+    else onChange({ target: { value: defaultValue, name: name } });
   }, [defaultValue]);
 
   const handleNumeric = (e) => {

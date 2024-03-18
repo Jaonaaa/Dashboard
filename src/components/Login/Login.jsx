@@ -6,8 +6,8 @@ import "./Login.sass";
 const Login = () => {
   return (
     <div id="login_container">
-      {/* <FormSignIn /> */}
-      <FormSignUp />
+      <FormSignIn />
+      {/* <FormSignUp /> */}
     </div>
   );
 };

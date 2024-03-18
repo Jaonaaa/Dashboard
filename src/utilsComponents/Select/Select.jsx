@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./style/style.sass";
+import "./style.sass";
 
 const Select = ({
   optionsType,

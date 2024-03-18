@@ -1,6 +1,6 @@
 import { getHeaderAuth, getHeaderAuthJWT } from "../hooks/useIdentity";
 
-export const URL = "http://localhost:8085/";
+export const URL = "http://192.168.88.21:8080/";
 
 const rebuildURL = (url = "") => {
   if (url.indexOf(":new/") !== -1) return url;

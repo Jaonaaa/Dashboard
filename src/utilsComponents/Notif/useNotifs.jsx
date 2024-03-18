@@ -25,14 +25,7 @@ export const useMyNotifs = () => {
   };
   const showRandomNotif = () => {
     const status = ["OK", "warning", "info", "error", "succes", "star"];
-    const words = [
-      "I'm ok",
-      "Worryy (╬▔皿▔)╯",
-      "Hey I got some news !",
-      "Danger danger (ㆆ_ㆆ)",
-      "GG dude , nice one (～￣▽￣)～",
-      " Star boyy (￣y▽￣)╭ Ohohoho.....",
-    ];
+    const words = ["I'm ok", "Worryy (╬▔皿▔)╯", "Hey I got some news !", "Danger danger (ㆆ_ㆆ)", "GG dude , nice one (～￣▽￣)～", " Star boyy (￣y▽￣)╭ Ohohoho....."];
     let index = Math.floor(Math.random() * status.length);
     setNotifs([...notifs, <Notifs key={getUid()} notif={{ status: status[index], details: words[index] }} />]);
   };

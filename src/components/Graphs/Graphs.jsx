@@ -3,15 +3,28 @@ import CustomChart from "../../utilsComponents/Chart/CustomChart";
 import HorizContainer from "../../utilsComponents/Container/HorizContainer/HorizContainer";
 import "./Graphs.sass";
 
-const example = {
-  labels: ["January", "February", "March", "April", "May"],
+const example1 = {
+  labels: ["January 2024", "February 2024", "March 2024", "April 2024"],
   datasets: [
     {
-      label: "Sales Data",
+      label: "Users",
       backgroundColor: ["rgba(75, 192, 192, 0.2)", "#f49090a1", "#2e99a099", "#018a00d9", "#e97123a1"],
       borderColor: ["rgba(75, 192, 192, 0.2)", "#f49090a1", "#2e99a099", "#018a00d9", "#e97123a1"],
       borderWidth: 1,
-      data: [60, 26, 60, 55, 20],
+      data: [0, 2, 10, 0, 0],
+    },
+  ],
+};
+
+const example2 = {
+  labels: ["17-03", "18-03", "19-03", "20-03"],
+  datasets: [
+    {
+      label: "Artworks",
+      backgroundColor: ["rgba(75, 192, 192, 0.2)", "#f49090a1", "#2e99a099", "#018a00d9", "#e97123a1"],
+      borderColor: ["rgba(75, 192, 192, 0.2)", "#f49090a1", "#2e99a099", "#018a00d9", "#e97123a1"],
+      borderWidth: 1,
+      data: [0, 5, 10, 14],
     },
   ],
 };
@@ -19,25 +32,13 @@ const example = {
 const Graphs = () => {
   return (
     <>
-      <div className="inner graphs_container">
-        <HorizContainer title={"Charte Graphique"}>
+      <div className=" graphs_container">
+        <HorizContainer>
           <div className="container_block">
-            <CustomChart
-              title="First Chart"
-              labels={example.labels}
-              datasets={example.datasets}
-              type="bar"
-              positionTitle="top"
-            />
+            <CustomChart title="Number of Users" labels={example1.labels} datasets={example1.datasets} type="bar" positionTitle="default" />
           </div>
           <div className="container_block">
-            <CustomChart
-              title="Second Chart"
-              labels={example.labels}
-              datasets={example.datasets}
-              type="bar"
-              positionTitle="bottom"
-            />
+            <CustomChart title="Number of artworks" labels={example2.labels} datasets={example2.datasets} type="bar" positionTitle="default" />
           </div>
         </HorizContainer>
       </div>
