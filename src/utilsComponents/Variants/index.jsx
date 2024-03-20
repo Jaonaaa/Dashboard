@@ -1,17 +1,17 @@
 export const variantContainerStag = {
-  hidden: { opacity: 0 },
-  visible: {
+  initial: { opacity: 0 },
+  animate: {
     opacity: 1,
     transition: {
-      delayChildren: 0.2,
+      delayChildren: 0.15,
       staggerChildren: 0.1,
     },
   },
 };
 
 export const variantItem = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
+  initial: { y: 20, opacity: 0 },
+  animate: {
     y: 0,
     opacity: 1,
     // transition: {
@@ -21,20 +21,19 @@ export const variantItem = {
 };
 
 export const variantLineSlide = {
-  hidden: { y: "1rem", opacity: 0 },
-  visible: {
+  initial: { y: "1rem", opacity: 0 },
+  animate: {
     y: 0,
     opacity: 1,
     transition: {
       ease: "easeInOut",
-      // duration: 0.5,
     },
   },
 };
 
 export const variantLineSlideToRight = {
-  hidden: { x: "-5rem", opacity: 0 },
-  visible: {
+  initial: { x: "-5rem", opacity: 0 },
+  animate: {
     y: 0,
     opacity: 1,
     transition: {

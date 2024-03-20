@@ -1,17 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./SubLink.sass";
 import { Link } from "react-router-dom";
 import { TriIcon } from "./Icon";
+import "./SubLink.sass";
 
 const SubLink = ({ position, links = [], setActiveLink }) => {
   const [topIcon, setTopIcon] = useState(0);
   const container = useRef(null);
+  const [heightContainer, setHeightContainer] = useState(0);
+
   useEffect(() => {
     let { height } = container.current.getBoundingClientRect();
     let transYPercent = height * 0.1 * links.length;
     if (links.length > 0) transYPercent /= 2;
     setTopIcon(transYPercent);
+    setHeightContainer(height);
   }, []);
+
   return (
     <div
       className="paper_nav"
@@ -30,6 +34,15 @@ const SubLink = ({ position, links = [], setActiveLink }) => {
       >
         <TriIcon />
       </div>
+      <div
+        className="helper_paper"
+        style={{
+          top: 0,
+          left: -22.7,
+          height: heightContainer + "px",
+          width: 22.7,
+        }}
+      />
       <div className="container">
         {links.map((link, index) => (
           <LinkRow key={index} link={link} setActiveLink={setActiveLink} />

@@ -12,10 +12,10 @@ import "./Hider.sass";
 // }
 
 const variantHiderBlank = {
-  hidden: {
+  initial: {
     y: "0%",
   },
-  visible: {
+  animate: {
     y: "0%",
   },
   leave: {
@@ -24,10 +24,10 @@ const variantHiderBlank = {
 };
 
 const variantHiderShowUp = {
-  hidden: {
+  initial: {
     opacity: "0%",
   },
-  visible: {
+  animate: {
     opacity: "100%",
   },
   leave: {
@@ -39,8 +39,8 @@ const variantHiderShowUp = {
 const showState = {
   default: {
     variants: variantHiderBlank,
-    initial: "hidden",
-    animate: "visible",
+    initial: "initial",
+    animate: "animate",
     exit: "leave",
     transition: {
       ease: "easeInOut",
@@ -49,8 +49,8 @@ const showState = {
   },
   showUp: {
     variants: variantHiderShowUp,
-    initial: "hidden",
-    animate: "visible",
+    initial: "initial",
+    animate: "animate",
     exit: "leave",
     transition: {
       ease: "easeInOut",

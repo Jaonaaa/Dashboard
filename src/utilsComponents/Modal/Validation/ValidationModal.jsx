@@ -14,11 +14,10 @@ import "./ValidationModal.sass";
 //   validationText?: string;
 // }
 
-
-const ValidationModal = ({ title = "", content = "Lorem", closer, callBack, icon,cancelOn,validationText }) => {
+const ValidationModal = ({ title = "", content = "Lorem", closer, callBack, icon, cancelOn, validationText }) => {
   return (
     <>
-     <Modal closer={closer}>
+      <Modal closer={closer}>
         <Box>
           <div className="validation-container">
             {icon != null ? (

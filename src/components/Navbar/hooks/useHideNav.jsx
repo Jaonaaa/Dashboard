@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { link_to_hide_nav } from "../NavLink";
+import { useLocation } from "react-router-dom";
 
 const useHideNav = () => {
   const [visibleNav, setVisibleNav] = useState(true);
+  const nav = useLocation();
 
   useEffect(() => {
     handleNavVisibility();
-  }, [document.location.pathname]);
+  }, [nav.pathname]);
 
   useEffect(() => {
     window.addEventListener("popstate", handleNavVisibility);

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import { CaretDownIcon, getMaxLenghtText, getValueByIndex, removeUpper, swapToDefaultValue } from "./functions";
 import "./style/style.sass";
 
 const Select = ({
-  optionsType,
+  optionsType = [],
   name,
   onChange,
   fullWidth,
@@ -10,43 +11,19 @@ const Select = ({
   caretIcon = <CaretDownIcon />,
   multiple = false,
   placeholder = "",
+  defaultValue = undefined,
 }) => {
-  const [selectedOption, setSelectedOption] = useState(
-    optionsType.length > 0
-      ? {
-          value: optionsType[0].value,
-          label: optionsType[0].label,
-        }
-      : { value: "", label: "" }
-  );
+  const autoDefaultValue = optionsType.length > 0 ? swapToDefaultValue(optionsType, defaultValue) : { value: "", label: "" };
+  const [selectedOption, setSelectedOption] = useState(autoDefaultValue);
   const [indexSelected, setIndexSelected] = useState([]);
-
   const longContent = useRef(null);
   const [openOptions, setOpenOptions] = useState(false);
+
   const heightNecessary = 16 * 2.6 * optionsType.length;
   const maxHeight = 16 * 2.6 * 5;
 
   const [widthNecessary, setWidthNecessary] = useState(0);
   const longestText = getMaxLenghtText(optionsType);
-
-  useEffect(() => {
-    setSelectedOption(
-      optionsType.length > 0
-        ? {
-            value: optionsType[0].value,
-            label: optionsType[0].label,
-          }
-        : { value: "", label: "" }
-    );
-    if (optionsType.length > 0)
-      if (multiple) {
-      } else onChange({ target: { name: name, value: optionsType[0].value } });
-  }, [optionsType]);
-
-  useEffect(() => {
-    let width = longContent.current.getBoundingClientRect().width + (multiple ? 40 : 0);
-    setWidthNecessary(width + 3.4 * 16);
-  }, [optionsType]);
 
   const handleOpen = () => {
     if (openOptions) setOpenOptions(false);
@@ -58,8 +35,25 @@ const Select = ({
     if (indexSelected.includes(index)) {
       selects = indexSelected.filter((ele) => ele !== index);
     } else selects = [...indexSelected, index];
+
+    onChange({ target: { name: name, value: getValueByIndex(optionsType, selects), type: "select" } });
     setIndexSelected(selects);
   };
+
+  useEffect(() => {
+    setSelectedOption(autoDefaultValue);
+    if (optionsType.length > 0)
+      if (multiple && defaultValue) {
+        const defSelect = removeUpper(defaultValue, optionsType.length);
+        setIndexSelected(defSelect);
+        onChange({ target: { name: name, value: getValueByIndex(optionsType, defSelect), type: "select" } });
+      } else onChange({ target: { name: name, value: autoDefaultValue.value, type: "select" } });
+  }, [optionsType]);
+
+  useEffect(() => {
+    let width = longContent.current.getBoundingClientRect().width + (multiple ? 40 : 0);
+    setWidthNecessary(width + 3.4 * 16);
+  }, [optionsType]);
 
   return (
     <>
@@ -72,21 +66,11 @@ const Select = ({
             setOpenOptions(false);
           }}
         >
-          <input type="hidden" value={selectedOption.value} name={name} />
+          <input type="hidden" value={!multiple ? selectedOption.value : ""} name={name} />
           <div className="container_label" onClick={handleOpen}>
             <div className="text" style={{ width: widthNecessary }}>
               {multiple ? (placeholder !== "" ? placeholder : name) : selectedOption.label}
-              {multiple ? (
-                indexSelected.length > 0 ? (
-                  <>
-                    <div className="count"> {indexSelected.length}</div>
-                  </>
-                ) : (
-                  ""
-                )
-              ) : (
-                ""
-              )}
+              {multiple ? indexSelected.length > 0 ? <div className="count"> {indexSelected.length}</div> : "" : ""}
               <div className="hiddenText" ref={longContent}>
                 {longestText}
               </div>
@@ -115,10 +99,9 @@ const Select = ({
                   setSelectedOption(option);
                   if (onChange)
                     if (multiple) {
-                      ///
                       handleSelectedIndex(index);
                     } else {
-                      onChange({ target: { name: name, value: option.value } });
+                      onChange({ target: { name: name, value: option.value, type: "select" } });
                       handleOpen();
                     }
                 }}
@@ -130,7 +113,6 @@ const Select = ({
                     </div>
                   </>
                 )}
-
                 {option.label}
               </div>
             ))}
@@ -138,29 +120,6 @@ const Select = ({
         </div>
       </div>
     </>
-  );
-};
-
-// use only for { value , label } Array
-const getMaxLenghtText = (optionsType) => {
-  let textArray = optionsType.filter((option, i, array) => {
-    return option.label.length === Math.max(...array.map((option_in) => option_in.label.length));
-  });
-  if (textArray.length > 0) return textArray[0].label;
-  else return "";
-};
-
-const CaretDownIcon = () => {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6.807" viewBox="0 0 12 6.807">
-      <path
-        id="Icon_awesome-caret-down"
-        data-name="Icon awesome-caret-down"
-        d="M1.6,13.5H11.987a.806.806,0,0,1,.569,1.376L7.365,20.071a.809.809,0,0,1-1.142,0L1.033,14.876A.806.806,0,0,1,1.6,13.5Z"
-        transform="translate(-0.794 -13.5)"
-        fill="#707070"
-      />
-    </svg>
   );
 };
 

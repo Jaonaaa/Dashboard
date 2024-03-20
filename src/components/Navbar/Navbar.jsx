@@ -4,6 +4,8 @@ import MenuNav from "./MenuNav/MenuNav";
 import useNav from "./hooks/useNav";
 import linksNavData from "./NavLink";
 import useHideNav from "./hooks/useHideNav";
+import { motion } from "framer-motion";
+import { navbarVariant } from "./Variants";
 import "./Navbar.sass";
 
 const Navbar = () => {
@@ -25,12 +27,19 @@ const Navbar = () => {
   return (
     <>
       {visibleNav && (
-        <div className={`navbar_container  ${miniNav ? "mini " : ""}`} id="navbar">
+        <motion.div
+          variants={navbarVariant}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          className={`navbar_container  ${miniNav ? "mini " : ""}`}
+          id="navbar"
+        >
           <HeadNav miniNav={miniNav} switchNav={switchNav} />
           {linksNavData.map((menuData, key) => (
             <MenuNav key={key} miniNav={miniNav} {...menuData} setActiveLink={setActiveLink} />
           ))}
-        </div>
+        </motion.div>
       )}
     </>
   );

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Indexation.sass";
+import { motion } from "framer-motion";
+import { indexVariants } from "./variants";
 
 const Indexation = () => {
   const [indexName, setIndexName] = useState(["index", "text"]);
@@ -32,7 +34,11 @@ const Indexation = () => {
     });
   };
 
-  return <div className="indexation_container">{getIndex()}</div>;
+  return (
+    <motion.div variants={indexVariants} className="indexation_container">
+      {getIndex()}
+    </motion.div>
+  );
 };
 
 const UpFirst = (str) => {

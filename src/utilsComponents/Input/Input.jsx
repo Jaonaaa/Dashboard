@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import PictureIcon from "../../assets/icons/PictureIcon";
 import CalendarIcon from "../../assets/icons/CalendarIcon";
 import Checkbox from "./Checkbox/Checkbox";
+import { formateDateValue, handleTextArea, isDateOn } from "./functions";
 import "./Input.sass";
 
 /**
  * Represents an input configuration object.
  * @typedef {Object} InputConfig
- * @property {"text"|"password"|"email"|"number"|"tel"|"date"|"time"|"datetime-local"|"search"|"url"|"month"|"time"} [type="text"] - The type of input (e.g., "text", "input").
+ * @property {"text"|"password"|"email"|"number"|"tel"|"date"|"time"|"datetime-local"|"search"|"url"|"month"|"time"|"file"|"checkbox"} [type="text"] - The type of input (e.g., "text", "input").
  * @property {string} [placeholder=""] - Placeholder text for the input field.
  * @property {string} [defaultValue=""] - Default value for the input field.
  * @property {string} [title=""] - Title attribute for the input field.
@@ -29,7 +30,7 @@ import "./Input.sass";
 function Input(props) {
   const {
     type = "text",
-    placeholder = "",
+    placeholder = undefined,
     defaultValue = "",
     title = "",
     name = "",
@@ -40,12 +41,13 @@ function Input(props) {
     fullWidth = false,
     splitterTextArea = "\\n",
     rows = 10,
-    constraint = (val) => true,
+    constraint = () => true,
   } = props;
 
   const [value, setValue] = useState(defaultValue);
   const [fileLoaded, setFileLoaded] = useState(false);
   const [filePreview, setFilePreview] = useState("");
+
   const handleValue = (e) => {
     setValue(e.target.value);
     onChange(e);
@@ -73,12 +75,6 @@ function Input(props) {
     } else setFileLoaded(false);
   };
 
-  useEffect(() => {
-    setValue(defaultValue);
-    DefaultvalueFile();
-    onChange({ target: { value: defaultValue, name: name } });
-  }, [defaultValue]);
-
   const handleNumeric = (e) => {
     if (isNaN(+e.target.value)) return "";
     if (constraint(+e.target.value)) {
@@ -87,23 +83,12 @@ function Input(props) {
     }
   };
 
-  const handleTextArea = (e) => {
-    let rows = e.target.value.split("\n");
-    let newText = "";
-    rows.forEach((row) => (newText += row + splitterTextArea));
-    // use this for the default split .replace(/\\n/g, "\n")
-    return { target: { value: newText, name: e.target.name } };
-  };
+  useEffect(() => {
+    setValue(defaultValue);
+    DefaultvalueFile();
+    if (type !== "checkbox") onChange({ target: { value: defaultValue, name: name, type: type } });
+  }, [defaultValue]);
 
-  const isDateOn = () => {
-    if (type === "date" || type === "month" || type === "datetime-local" || type === "time") return true;
-    else return false;
-  };
-  const formateDateValue = (value) => {
-    if (type === "date") return value.split("T")[0];
-    else if (type === "datetime-local") return value.replace(":00.000+00:00", "");
-    else return value;
-  };
   return (
     <>
       {type === "file" ? (
@@ -115,7 +100,7 @@ function Input(props) {
                 <div className="icon">
                   <PictureIcon />
                 </div>
-                <div className="span"> Choose a file... </div>{" "}
+                <div className="span"> {placeholder ? placeholder : "Choose a picture..."} </div>{" "}
               </>
             ) : (
               <>
@@ -151,7 +136,7 @@ function Input(props) {
               placeholder={placeholder}
               rows={rows}
               onChange={(e) => {
-                onChange(handleTextArea(e));
+                onChange(handleTextArea(e, splitterTextArea));
               }}
               disabled={disabled}
               defaultValue={value}
@@ -174,7 +159,7 @@ function Input(props) {
       ) : (
         <div className={`input_ ${fullWidth ? "fullwidth" : ""}`}>
           <label htmlFor={name}>{title}</label>
-          {isDateOn() && (
+          {isDateOn(type) && (
             <label htmlFor={name} className="icon_calendar">
               <CalendarIcon />
             </label>
@@ -189,7 +174,7 @@ function Input(props) {
             pattern={pattern ? pattern : undefined}
             onChange={type === "number" ? handleNumeric : handleValue}
             placeholder={placeholder}
-            value={isDateOn ? formateDateValue(value) : value}
+            value={isDateOn(type) ? formateDateValue(value, type) : value}
             disabled={disabled}
             style={{ paddingRight: type === "date" ? "0.9rem" : "auto" }}
           />

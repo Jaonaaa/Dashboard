@@ -95,40 +95,41 @@
                     background: var(--bg-color-hovered)
     .button_log_in
         background: transparent
-        padding: 0.5rem 1.3rem
-        font-size: 0.85rem
+        padding: 0rem 1.3rem
+        font-size: 0.95rem
         border-radius: 0.3rem
         cursor: pointer
-        border: 1px solid var(--primary)
         transition: all 0.2s ease-in-out
         display: flex
         align-items: center
         @include breakpoints.break_MD()
-            font-size: 0.82rem
+            font-size: 0.85rem
             padding: 0.46rem 1.12rem
         @include breakpoints.break_SM()
             font-size: 0.78rem
             padding: 0.42rem 1rem
-        &:hover
-            border: 1px solid var(--primary-hovered)
+
         .text
-            color: var(--primary-hovered)
+
             @include breakpoints.break_MD()
                 font-size: 0.8rem
             @include breakpoints.break_SM()
                 font-size: 0.76rem
             svg
-                path
-                    fill: var(--primary-hovered)
+
         .text
-            margin-right: 0.35rem
-            color: var(--primary)
+            margin-right: 0.7rem
+
             transition: all 0.2s ease-in-out
+            font-weight: 600
 
         svg
             transition: all 0.2s ease-in-out
             margin-top: 0.2rem
-            path
-                fill: var(--primary)
-                &:hover
-                    transform: none
+            font-size: 1.1rem
+        &:hover
+            .text
+                color: var(--primary)
+            svg
+                path
+                    fill: var(--primary-hovered)

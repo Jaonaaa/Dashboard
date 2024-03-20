@@ -21,8 +21,7 @@ const usePosition = (ref, type, miniNav) => {
 
   const getPosition = () => {
     if (type !== "link_list") return;
-    let { left, top, right, bottom, x, y, width, height } =
-      ref.current.getBoundingClientRect();
+    let { left, top, right, bottom, x, y, width, height } = ref.current.getBoundingClientRect();
     setPosition({
       left: left,
       top: top,

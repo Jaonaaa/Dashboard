@@ -5,6 +5,7 @@
     // min-width: 25rem
     min-width: 100%
     margin: auto
+    border-radius: 0.5rem
     position: relative
     justify-content: space-between !important
     align-items: stretch !important
@@ -16,6 +17,7 @@
     transition: all 0.2s ease-in-out
     @include breakpoints.break_LG()
         min-width: 24rem
+        width: 100%
     @include breakpoints.break_MD()
         min-width: 90%
         padding: 0.8rem 1.2rem
@@ -47,19 +49,26 @@
             align-items: center
             margin-bottom: 1.2rem
             .icon
-                width: 1.2rem
+                width: 1.5rem
                 height: 1.2rem
-                background: var(--primary)
-                border-radius: 50%
+
                 margin-right: 0.5rem
+                .icon_
+                    font-size: 1.5rem
+                    margin-top: -0.2rem
+                    path
+                        color: #d23535
             .value
-                font-size: 0.8rem
+                font-size: 1rem
                 font-weight: bolder
+                display: flex
+                align-items: baseline
                 color: var(--text-cold-color)
                 @include breakpoints.break_MD()
                     font-size: 0.75rem
                 @include breakpoints.break_SM()
                     font-size: 0.7rem
+
         .value_box
             font-size: 1.63rem
             color: var(--text-cold-color)

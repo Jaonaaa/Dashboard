@@ -3,6 +3,7 @@ $breakpoint-xsm: 456px
 $breakpoint-sm: 576px
 $breakpoint-md: 768px
 $breakpoint-lg: 1012px
+$breakpoint-xl-lg: 1212px
 $breakpoint-xl: 1500px
 
 @mixin media($breakpoint)
@@ -11,6 +12,10 @@ $breakpoint-xl: 1500px
 
 @mixin break_XL()
     @media (max-width: $breakpoint-xl)
+        @content
+
+@mixin break_XL_LG()
+    @media (max-width: $breakpoint-xl-lg)
         @content
 
 @mixin break_LG()

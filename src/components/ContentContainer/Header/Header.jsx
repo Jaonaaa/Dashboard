@@ -4,6 +4,7 @@ import Indexation from "./Indexation/Indexation";
 import useHideNav from "../../Navbar/hooks/useHideNav";
 import "./Header.sass";
 import UserParams from "./UserParams/UserParams";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const { visibleNav } = useHideNav();
@@ -37,6 +38,7 @@ const Header = () => {
       if (width > 768) hideNavbar();
     });
   };
+
   useEffect(() => {
     hideNavbar();
   }, [document.location.pathname]);
@@ -50,7 +52,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="container_header">
+    <motion.div initial="initial" animate="animate" exit="exit" className="container_header">
       {hiderOn && <HiderNavbar closer={hideNavbar} />}
       <div className="first">
         {visibleNav && (
@@ -65,7 +67,7 @@ const Header = () => {
       <div className="params">
         <UserParams />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

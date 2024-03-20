@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMyNotifs } from "../../utilsComponents/Notif/useNotifs";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
@@ -10,9 +10,11 @@ import ValidationModal from "../../utilsComponents/Modal/Validation/ValidationMo
 import { variantItem, variantContainerStag } from "../../utilsComponents/Variants";
 import BoxTitle from "../../utilsComponents/Box/BoxTitle/BoxTitle";
 import Loader from "../../utilsComponents/Hider/Loader/Loader";
+import useForm from "../../hooks/useForm";
 import "./ComponentContainer.sass";
 
 const ComponentContainer = () => {
+  const { formData, handleInputForm } = useForm();
   const [openModal, setOpenModal] = useState(false);
   const [openModalValidation, setOpenModalValidation] = useState(false);
   const { showRandomNotif, notifs } = useMyNotifs();
@@ -31,24 +33,20 @@ const ComponentContainer = () => {
     setOpenModalValidation(!openModalValidation);
   };
 
+  useEffect(() => {
+    // console.log(formData);
+  }, [formData]);
+
   return (
-    <motion.div className="container_components" variants={variantContainerStag} initial={"hidden"} animate={"visible"}>
+    <motion.div className="container_components" variants={variantContainerStag}>
       {/* MODAL */}
-      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
+      <motion.div className="component_box" variants={variantItem}>
         <button onClick={handleModal}> Open Modal </button>
         <AnimatePresence>
           {openModal && (
             <Modal closer={handleModal}>
               <BoxTitle title={"Modal Test  (～￣▽￣)～"}>
-                <Input
-                  title={"Send some text"}
-                  fullWidth
-                  defaultValue="Hello, world!"
-                  type="textarea"
-                  onChange={(e) => {
-                    // console.log(e.target.value);
-                  }}
-                />
+                <Input title={"Send some text"} fullWidth defaultValue="Hello, world!" type="textarea" onChange={handleInputForm} />
               </BoxTitle>
             </Modal>
           )}
@@ -56,57 +54,55 @@ const ComponentContainer = () => {
         <div className="title_compo">Modal</div>
       </motion.div>
       {/* NOTIFICATIONS */}
-      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
+      <motion.div className="component_box" variants={variantItem}>
         <button onClick={showRandomNotif}> Add notifs</button>
         {notifs.map((notif) => notif)}
         <div className="title_compo">Notifications</div>
       </motion.div>
       {/* INPUT */}
-      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
-        <Input onChange={(e) => {}} type="text" title={"Title"} name="name" />
+      <motion.div className="component_box" variants={variantItem}>
+        <Input onChange={handleInputForm} type="text" title={"Title"} name="input_text" />
         <div className="title_compo">Input </div>
       </motion.div>
       {/* INPUT */}
-      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
-        <Input onChange={(e) => {}} type="checkbox" title={"Title"} name="name" />
+      <motion.div className="component_box" variants={variantItem}>
+        <Input onChange={handleInputForm} type="file" title={"Fichier"} name="file" />
+        <div className="title_compo">Input </div>
+      </motion.div>
+      {/* INPUT */}
+      <motion.div className="component_box" variants={variantItem}>
+        <Input onChange={handleInputForm} type="checkbox" title={"Title"} name="checkbox" />
         <div className="title_compo">Input checkbox</div>
       </motion.div>
       {/* LOADER */}
-      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
+      <motion.div className="component_box" variants={variantItem}>
         <Loader />
         <div className="title_compo">Loader</div>
       </motion.div>
       {/* DROPDOWN */}
-      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
-        <Select
-          onChange={(e) => {
-            // console.log(e);
-          }}
-          name={"select_input"}
-          optionsType={options}
-        />
+      <motion.div className="component_box" variants={variantItem}>
+        <Select onChange={handleInputForm} defaultValue={options[2]} name={"select_simple"} optionsType={options} />
         <div className="title_compo">Dropdown</div>
       </motion.div>
       {/* DROPDOWN */}
-      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
+      <motion.div className="component_box" variants={variantItem}>
         <Select
-          onChange={(e) => {
-            // console.log(e);
-          }}
+          onChange={handleInputForm}
           multiple
-          name={"select_input"}
+          name={"select"}
           optionsType={options}
+          defaultValue={[2, 0]}
           placeholder="Examples"
         />
         <div className="title_compo">Dropdown ( mutiple )</div>
       </motion.div>
       {/* METHOD AND THEMES SWITCHER */}
-      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
+      <motion.div className="component_box" variants={variantItem}>
         <div className="title_compo">Themes</div>
         <SwitcherTheme />
       </motion.div>
       {/* VALIDATION MODAL */}
-      <motion.div className="component_box" variants={variantItem} transition={"transition"}>
+      <motion.div className="component_box" variants={variantItem}>
         <div className="title_compo">Validation Box</div>
         <button onClick={handleModalValidation}> Confirm </button>
         <AnimatePresence>

@@ -40,9 +40,7 @@ const RowNav = (props) => {
           </div>
         </Link>
         {type === "link_list" && hovered && <div className="pont"></div>}
-        {hovered && type === "link_list" && (
-          <SubLink position={position} setActiveLink={setActiveLink} links={sublinks} />
-        )}
+        {hovered && type === "link_list" && <SubLink position={position} setActiveLink={setActiveLink} links={sublinks} />}
       </div>
     </>
   );

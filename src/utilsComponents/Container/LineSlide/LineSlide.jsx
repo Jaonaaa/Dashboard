@@ -10,8 +10,8 @@ const LineSlide = (props) => {
     <motion.div
       className={`line_container ${className}`}
       variants={variantLineSlide}
-      // animate="visible"
-      // initial="hidden"
+      // animate="animate"
+      // initial="initial"
       // transition={"transition"}
     >
       {children}

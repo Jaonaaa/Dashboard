@@ -35,7 +35,7 @@
   --text-bold-color: #000000;
   --text-color: #373737;
   --input-bg: #ffffff;
-
+  --bg-scrollbar-track: rgba(234, 233, 233, 0.118);
   /* ///// */
 }
 
@@ -52,6 +52,8 @@
   --text-color: #353535;
   --input-bg: #ffffff;
 
+  --bg-scrollbar-track: rgba(234, 233, 233, 0.118);
+
 }
 
 .dark_theme {
@@ -66,6 +68,9 @@
   --text-bold-color: #fff;
   --text-color: #cbc7c7;
   --input-bg: #110e1e;
+
+  --bg-scrollbar-track: rgba(6, 8, 44, 0.118);
+
 }
 
 
@@ -98,7 +103,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgba(234, 233, 233, 0.118);
+  background-color: var(--bg-scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {

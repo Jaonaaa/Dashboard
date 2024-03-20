@@ -1,0 +1,66 @@
+.pagination_container
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-top: 0.8rem
+    .left,.right
+        width: 2.2rem
+        height: 2.2rem
+        display: flex
+        justify-content: center
+        align-items: center
+        border-radius: 0.3rem
+        transition: all 0.2s ease-in-out
+        cursor: pointer
+        &:hover
+            background: var(--primary)
+            svg
+                path
+                    color: #fff
+        svg
+            font-size: 1.2rem
+    .left
+        margin-right: 1rem
+    .right
+        margin-left: 1rem
+    .pages_index
+        display: flex
+        align-items: center
+        .spaces
+            width: 1.5rem
+            display: flex
+            align-items: center
+            font-size: 1.1rem
+            justify-content: center
+            &::selection
+                background: transparent
+                color: var(--text-color)
+        .block_index
+            width: 2.2rem
+            height: 2.2rem
+            margin: 0 0.3rem
+            cursor: pointer
+            display: flex
+            justify-content: center
+            align-items: center
+            background: transparent
+            transition: all 0.2s ease-in-out
+            border: 1px solid transparent
+            border-radius: 50%
+            &:hover
+                border: 3px solid var(--primary)
+                color: var(--primary)
+            &::selection
+                background: transparent
+                color: var(--text-color)
+
+        .active
+            background: var(--primary)
+            color: #fff
+            border-radius: 50%
+            font-weight: bolder
+            &:hover
+                color: #fff
+            &::selection
+                color: #fff

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import useIdentity from "../../../../hooks/useIdentity";
+import { BsArrowRight } from "react-icons/bs";
+
 import "./UserParams.sass";
 
 const UserParams = () => {
@@ -20,23 +22,13 @@ const UserParams = () => {
       {user != undefined ? (
         <>
           <div className="button_log_in" onClick={goLogin}>
-            <span className="text">Login</span> <ArrowRight />{" "}
+            <span className="text">Login</span> <BsArrowRight className="icon_" />{" "}
           </div>
         </>
       ) : (
         <>
           <div className="avatar">
-            {user == undefined ? (
-              "T"
-            ) : user ? (
-              user.photoURL
-            ) : "" ? (
-              <image src={user ? user.photoURL : ""} alt="user picture" />
-            ) : user ? (
-              user.firstname[0]
-            ) : (
-              "T"
-            )}
+            {user == undefined ? "T" : user ? user.photoURL : "" ? <image src={user ? user.photoURL : ""} alt="user picture" /> : user ? user.firstname[0] : "T"}
             <div className="blank"></div>
             <div className="user_about">
               <div className="name">{user ? user.firstname + " " + user.lastname : " Test Prime"}</div>
@@ -111,33 +103,9 @@ const EllipsisVerticale = () => {
     <>
       <svg xmlns="http://www.w3.org/2000/svg" width="4" height="18" viewBox="0 0 4 18">
         <g id="Groupe_39" data-name="Groupe 39" transform="translate(-28 625)">
-          <circle
-            id="Ellipse_8"
-            data-name="Ellipse 8"
-            cx="2"
-            cy="2"
-            r="2"
-            transform="translate(28 -625)"
-            fill="#393838"
-          />
-          <circle
-            id="Ellipse_9"
-            data-name="Ellipse 9"
-            cx="2"
-            cy="2"
-            r="2"
-            transform="translate(28 -618)"
-            fill="#393838"
-          />
-          <circle
-            id="Ellipse_10"
-            data-name="Ellipse 10"
-            cx="2"
-            cy="2"
-            r="2"
-            transform="translate(28 -611)"
-            fill="#393838"
-          />
+          <circle id="Ellipse_8" data-name="Ellipse 8" cx="2" cy="2" r="2" transform="translate(28 -625)" fill="#393838" />
+          <circle id="Ellipse_9" data-name="Ellipse 9" cx="2" cy="2" r="2" transform="translate(28 -618)" fill="#393838" />
+          <circle id="Ellipse_10" data-name="Ellipse 10" cx="2" cy="2" r="2" transform="translate(28 -611)" fill="#393838" />
         </g>
       </svg>
     </>
