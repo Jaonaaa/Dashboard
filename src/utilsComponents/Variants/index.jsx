@@ -14,9 +14,6 @@ export const variantItem = {
   animate: {
     y: 0,
     opacity: 1,
-    // transition: {
-    //   ease: "easeInOut",
-    // },
   },
 };
 

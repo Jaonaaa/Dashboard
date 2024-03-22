@@ -19,10 +19,10 @@ export const getMaxLenghtText = (optionsType) => {
   else return "";
 };
 
-export const swapToDefaultValue = (optionsType = [], defaultValue = undefined) => {
+export const swapToDefaultValue = (optionsType = [], defaultValue = undefined, defaultReturn = { value: "", label: "" }) => {
   if (defaultValue === undefined && optionsType.length > 0) return optionsType[0];
   let indexSelected = optionsType.findIndex((option) => JSON.stringify(option) === JSON.stringify(defaultValue));
-  return optionsType[indexSelected];
+  return optionsType[indexSelected] || defaultReturn;
 };
 
 export const CaretDownIcon = () => {

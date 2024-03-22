@@ -38,11 +38,12 @@ const linksNavData = [
                 {...dataDefault}
                 paginationOn={true}
                 pageCount={15}
+                rowCount={5}
                 callBackPagination={async (index) => {
                   return new Promise((resolve, reject) => {
-                    console.log(index);
+                    let end = Math.round(Math.random() * dataDefault.body.length);
                     setTimeout(() => {
-                      resolve([...dataDefault.body]);
+                      resolve([...dataDefault.body].splice(0, end));
                     }, 1000);
                   });
                 }}

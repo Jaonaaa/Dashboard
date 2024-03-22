@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { variantItem, variantContainerStag } from "../Variants";
 import { BooleanMark } from "./functions";
@@ -33,15 +33,20 @@ const Table = ({
   const [pageCountState] = useState(pageCount);
   const [dataRow, setDataRow] = useState(body);
   const [activeIndexPage, setActiveIndexPage] = useState(0);
+  const heightRow = 4; // rem
+  const heightTable = heightRow * rowCount;
 
   const getDataPagination = async (index) => {
     setFetching(true);
     let res = await callBackPagination(index);
     setFetching(false);
     //
-    console.log(res);
     setDataRow(res);
   };
+
+  useEffect(() => {
+    console.log(heightTable);
+  }, [heightTable]);
 
   return (
     <div className="table_container">
@@ -53,7 +58,7 @@ const Table = ({
           <div className="under_container">{headerOn.under_component}</div>
         </>
       )}
-      <div className="table_container_">
+      <div className="table_container_" style={{ "--min-height": heightTable + "rem" }}>
         <motion.table variants={variantContainerStag} initial={"initial"} animate={"animate"}>
           <thead>
             <tr>

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import "./Indexation.sass";
 import { motion } from "framer-motion";
 import { indexVariants } from "./variants";
+import { useLocation } from "react-router-dom";
+import "./Indexation.sass";
 
 const Indexation = () => {
   const [indexName, setIndexName] = useState(["index", "text"]);
 
   useEffect(() => {
     handleIndex();
-  }, [window.location.pathname]);
+  }, []);
 
   const handleIndex = () => {
     let currentPath = window.location.pathname;
@@ -35,7 +36,7 @@ const Indexation = () => {
   };
 
   return (
-    <motion.div variants={indexVariants} className="indexation_container">
+    <motion.div variants={indexVariants} className="indexation_container" initial="initial" animate="animate" exit="exit">
       {getIndex()}
     </motion.div>
   );

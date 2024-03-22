@@ -36,10 +36,10 @@ const PaginationSlider = ({
   };
 
   const handleArrowButton = () => {
-    if (index == 0) setPrevOn(false);
+    if (index === 0) setPrevOn(false);
     else setPrevOn(true);
 
-    if (index == pageCount - 1) setNextOn(false);
+    if (index === pageCount - 1) setNextOn(false);
     else setNextOn(true);
   };
 
@@ -110,11 +110,17 @@ const PaginationSlider = ({
   };
 
   const next = () => {
-    if (index + 1 < pageCount) setIndex(index + 1);
+    if (index + 1 < pageCount) {
+      setIndex(index + 1);
+      callBackPagination(index + 1);
+    }
   };
 
   const before = () => {
-    if (index - 1 >= 0) setIndex(index - 1);
+    if (index - 1 >= 0) {
+      setIndex(index - 1);
+      callBackPagination(index - 1);
+    }
   };
 
   useEffect(() => {

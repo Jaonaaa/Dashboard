@@ -8,9 +8,9 @@ export const indexVariants = {
     x: 0,
     transition: {
       opacity: {
-        delay: 0.38,
+        delay: 0.3,
       },
-      duration: 0.4,
+      duration: 0.3,
       ease: "circOut",
     },
   },
@@ -18,7 +18,10 @@ export const indexVariants = {
     opacity: 0,
     x: "-50%",
     transition: {
-      duration: 0.2,
+      opacity: {
+        delay: 0,
+      },
+      duration: 0.1,
     },
   },
 };
