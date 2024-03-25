@@ -2,12 +2,14 @@ import { Route } from "react-router-dom";
 import { useMyNotifs } from "./utilsComponents/Notif/useNotifs";
 import { useDefaultTheme } from "./themes/Theme";
 import { AnimatePresence } from "framer-motion";
-import Login from "./components/Login/Login";
+import Sign from "./components/Sign/Sign";
 import Navbar from "./components/Navbar/Navbar";
 import NavPage from "./pages/NavPage";
+import useAuth from "./hooks/useAuth";
 import "./App.sass";
 
 function App() {
+  useAuth();
   useDefaultTheme();
   const { notifs } = useMyNotifs();
   return (
@@ -17,7 +19,7 @@ function App() {
         <Navbar key={"nav"} />
       </AnimatePresence>
       <NavPage key={"nav_page"}>
-        <Route path="/login" element={<Login />} />
+        <Route path="/sign" element={<Sign />} />
       </NavPage>
     </div>
   );

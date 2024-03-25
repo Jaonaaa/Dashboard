@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import { alaivoDelete, alaivoPost } from "../utils/Alaivo";
+import { useLocation } from "react-router-dom";
 
 // variable localstorage
-const userStocked = "user";
-const tokenStocked = "token";
+export const userStocked = "user";
+export const tokenStocked = "token";
 const refreshTokenStocked = "refresh_token";
 const userDetails = "details_user_";
-
-const contentTypeHeaders = { "Content-Type": "application/json" };
-
+export const contentTypeHeaders = { "Content-Type": "application/json" };
 const authenticateURL = "auth/authenticate";
 const registerURL = "auth/register";
 const getRefreshTokenURL = "auth/refresh_token";
 const checkTokenStatusURL = "auth/checkTokenStatus";
 
-const getUserPresp = () => {
+export const getUserPresp = () => {
   return localStorage.getItem(userStocked) === null ? undefined : JSON.parse(localStorage.getItem(userStocked));
 };
 
 const useIdentity = (addNotifs) => {
   const userPresp = getUserPresp();
+  const loc = useLocation();
   const [user, setUser] = useState(userPresp);
   const [token_refresh_status, setTokenRefresh_status] = useState(false);
   const [token_status, setToken_status] = useState(false);
@@ -27,9 +27,10 @@ const useIdentity = (addNotifs) => {
   const initUser = () => {
     setUser(getUserPresp());
   };
+
   useEffect(() => {
     initUser();
-  }, [document.location.pathname]);
+  }, [loc.pathname]);
 
   const logout = (to = "/") => {
     localStorage.removeItem(userStocked);
@@ -48,7 +49,7 @@ const useIdentity = (addNotifs) => {
       }),
       {
         headers: {
-          contentTypeHeaders,
+          ...contentTypeHeaders,
         },
       },
       true
@@ -73,7 +74,7 @@ const useIdentity = (addNotifs) => {
       }),
       {
         headers: {
-          contentTypeHeaders,
+          ...contentTypeHeaders,
         },
       },
       true
@@ -95,7 +96,7 @@ const useIdentity = (addNotifs) => {
       }),
       {
         headers: {
-          contentTypeHeaders,
+          ...contentTypeHeaders,
         },
       },
       true
@@ -109,13 +110,13 @@ const useIdentity = (addNotifs) => {
       });
   };
 
-  const signIn = (formData, to) => {
+  const signIn = (formData, to, timer = 0) => {
     alaivoPost(
       authenticateURL,
       JSON.stringify(formData),
       {
         headers: {
-          contentTypeHeaders,
+          ...contentTypeHeaders,
         },
       },
       true
@@ -123,19 +124,14 @@ const useIdentity = (addNotifs) => {
       .then((response) => {
         console.log(response);
         setUpStorageConnect(response);
-        if (to) document.location = to;
+        addNotifs("ok", "Connected successfully", 800);
+        setTimeout(() => {
+          if (to) document.location = to;
+        }, timer);
       })
-      .catch((error) => {
+      .catch(() => {
         addNotifs("error", "Email or password not correct.");
-        // console.log(error);
       });
-  };
-
-  const setUpStorageConnect = (data) => {
-    localStorage.setItem(refreshTokenStocked, data.refresh_token);
-    localStorage.setItem(tokenStocked, data.token);
-    localStorage.setItem(userStocked, JSON.stringify(data.user));
-    localStorage.setItem(userDetails, JSON.stringify(data.details_user_));
   };
 
   const signUp = (formData, to) => {
@@ -144,18 +140,27 @@ const useIdentity = (addNotifs) => {
       JSON.stringify(formData),
       {
         headers: {
-          contentTypeHeaders,
+          ...contentTypeHeaders,
         },
       },
       true
     )
       .then((response) => {
         console.log(response);
+        setUpStorageConnect(response);
+        addNotifs("ok", "Connected successfully", 800);
         if (to) document.location = to;
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const setUpStorageConnect = (data) => {
+    localStorage.setItem(refreshTokenStocked, data.refresh_token);
+    localStorage.setItem(tokenStocked, data.token);
+    localStorage.setItem(userStocked, JSON.stringify(data.user));
+    localStorage.setItem(userDetails, JSON.stringify(data.details_user_));
   };
 
   return {
@@ -175,7 +180,7 @@ const useIdentity = (addNotifs) => {
 
 export const getHeaderAuthJWT = () => ({
   headers: {
-    Authorization: "Bearer " + tokenStocked,
+    Authorization: "Bearer " + localStorage.getItem(tokenStocked),
     ...contentTypeHeaders,
   },
 });

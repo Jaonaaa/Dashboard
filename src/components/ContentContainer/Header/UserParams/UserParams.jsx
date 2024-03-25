@@ -10,8 +10,8 @@ const UserParams = () => {
   };
   const [openPaper, closePaper] = useState(false);
   const { user, logout, getNewTokenByRefreshToken, checkTokenStatus, disableRefreshToken } = useIdentity();
-  const goLogin = () => {
-    navigate("/login");
+  const goSign = () => {
+    navigate("/sign");
   };
   const handleOpen = () => {
     closePaper(!openPaper);
@@ -19,20 +19,29 @@ const UserParams = () => {
 
   return (
     <div className="user_param">
-      {user != undefined ? (
+      {user == undefined ? (
         <>
-          <div className="button_log_in" onClick={goLogin}>
-            <span className="text">Login</span> <BsArrowRight className="icon_" />{" "}
+          <div className="button_log_in" onClick={goSign}>
+            <span className="text">Sign in</span> <BsArrowRight className="icon_" />{" "}
           </div>
         </>
       ) : (
         <>
           <div className="avatar">
-            {user == undefined ? "T" : user ? user.photoURL : "" ? <image src={user ? user.photoURL : ""} alt="user picture" /> : user ? user.firstname[0] : "T"}
+            {user == undefined ? (
+              "T"
+            ) : user.photoURL ? (
+              user.photoURL
+            ) : "" ? (
+              <image src={user ? user.photoURL : ""} alt="user picture" />
+            ) : user.firstname ? (
+              user.firstname[0]
+            ) : (
+              "T"
+            )}
             <div className="blank"></div>
             <div className="user_about">
               <div className="name">{user ? user.firstname + " " + user.lastname : " Test Prime"}</div>
-              {/* <div className="post">{user ? user.roles : "" + " / " + user ? user.society : ""}</div> */}
             </div>
           </div>
           <div

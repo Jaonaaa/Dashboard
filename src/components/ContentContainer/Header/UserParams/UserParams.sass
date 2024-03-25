@@ -6,7 +6,7 @@
     align-items: center
     margin-top: 0.2rem
     justify-content: flex-start
-    margin-right: 0.5rem
+    margin-right: 1.2rem
     @include breakpoints.break_MD()
         margin-top: 0.6rem
         margin-right: 0.4rem
@@ -94,8 +94,9 @@
                 &:hover
                     background: var(--bg-color-hovered)
     .button_log_in
-        background: transparent
-        padding: 0rem 1.3rem
+        background: var(--primary)
+
+        padding: 0.69rem 1.1rem 0.69rem 1.5rem
         font-size: 0.95rem
         border-radius: 0.3rem
         cursor: pointer
@@ -104,29 +105,30 @@
         align-items: center
         @include breakpoints.break_MD()
             font-size: 0.85rem
-            padding: 0.46rem 1.12rem
+            padding: 0.65rem 1.12rem
         @include breakpoints.break_SM()
             font-size: 0.78rem
-            padding: 0.42rem 1rem
+            padding: 0.6rem 1rem
 
         .text
+            color: #fff
             @include breakpoints.break_MD()
                 font-size: 0.8rem
             @include breakpoints.break_SM()
                 font-size: 0.76rem
 
         .text
-            margin-right: 0.7rem
+            margin-right: 0.5rem
             transition: all 0.2s ease-in-out
             font-family: "Sora_R"
+            font-size: 0.88rem
 
         svg
             transition: all 0.2s ease-in-out
-            margin-top: 0.2rem
-            font-size: 1.1rem
+            margin-top: 0.1rem
+            font-size: 1rem
+            path
+                fill: #fff
+
         &:hover
-            .text
-                color: var(--primary)
-            svg
-                path
-                    fill: var(--primary-hovered)
+            background: var(--primary-hovered)

@@ -5,6 +5,7 @@ import useHideNav from "../../Navbar/hooks/useHideNav";
 import "./Header.sass";
 import UserParams from "./UserParams/UserParams";
 import { motion } from "framer-motion";
+import SearchBar from "./SearchBar/SearchBar";
 
 const Header = () => {
   const { visibleNav } = useHideNav();
@@ -63,7 +64,7 @@ const Header = () => {
         <Indexation />
       </div>
 
-      <div className="search_bar"></div>
+      <SearchBar />
       <div className="params">
         <UserParams />
       </div>

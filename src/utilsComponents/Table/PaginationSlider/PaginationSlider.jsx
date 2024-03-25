@@ -136,7 +136,7 @@ const PaginationSlider = ({
         {indexes.map((row) => (
           <div
             key={row}
-            className={`block_index ${index === row ? "active" : ""}`}
+            className={`block_index ${index === row ? "active_page" : ""}`}
             onClick={() => {
               setIndex(row);
               callBackPagination(row);

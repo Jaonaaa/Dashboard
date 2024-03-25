@@ -1,24 +1,22 @@
-import { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import Loader from "./Loader/Loader";
 import "./Hider.sass";
 
-// interface HiderProps {
-//   children?: ReactNode;
-//   loader?: boolean;
-//   classCss?: string;
-//   animate?: "default" | "showUp";
-// }
-
 const variantHiderBlank = {
   initial: {
     y: "0%",
+    opacity: 0,
   },
   animate: {
     y: "0%",
+    opacity: 1,
+    transition: {
+      duration: 0.15,
+      delayChildren: 0.22,
+    },
   },
-  leave: {
+  exit: {
     opacity: "0%",
   },
 };
@@ -29,8 +27,12 @@ const variantHiderShowUp = {
   },
   animate: {
     opacity: "100%",
+    transition: {
+      duration: 0.15,
+      delayChildren: 0.2,
+    },
   },
-  leave: {
+  exit: {
     y: "100%",
     opacity: "0%",
   },
@@ -41,7 +43,7 @@ const showState = {
     variants: variantHiderBlank,
     initial: "initial",
     animate: "animate",
-    exit: "leave",
+    exit: "exit",
     transition: {
       ease: "easeInOut",
       type: "tween",
@@ -51,7 +53,7 @@ const showState = {
     variants: variantHiderShowUp,
     initial: "initial",
     animate: "animate",
-    exit: "leave",
+    exit: "exit",
     transition: {
       ease: "easeInOut",
       type: "tween",
@@ -65,16 +67,15 @@ const showState = {
   },
 };
 
-const Hider = (props) => {
-  const { loader, classCss, animate } = props;
+const Hider = ({ loader = false, classCss = "", animate = undefined, children, onClick = () => {} }) => {
   const hider = document.getElementById("hider_portal");
   let animation = animate != undefined ? showState[animate] : showState.default;
   animation = animation ? animation : showState.default;
 
   const hiderComponent = (
-    <motion.div {...animation} className={classCss} id="hider">
+    <motion.div {...animation} className={classCss} id="hider" onClick={onClick}>
       {loader && <Loader />}
-      {props.children}
+      {children}
     </motion.div>
   );
 

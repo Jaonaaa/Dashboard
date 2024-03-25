@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { variantItem, variantContainerStag } from "../Variants";
-import { BooleanMark } from "./functions";
+import { BooleanMark, sortBy } from "./functions";
 import LoaderTable from "./LoaderTable/LoaderTable";
 import PaginationSlider from "./PaginationSlider/PaginationSlider";
+import { PiCaretUpDown } from "react-icons/pi";
 import "./Table.sass";
 
 const isBooleanString = (str) => {
@@ -33,20 +34,22 @@ const Table = ({
   const [pageCountState] = useState(pageCount);
   const [dataRow, setDataRow] = useState(body);
   const [activeIndexPage, setActiveIndexPage] = useState(0);
+  const [activeSort, setActiveSort] = useState();
   const heightRow = 4; // rem
   const heightTable = heightRow * rowCount;
 
   const getDataPagination = async (index) => {
     setFetching(true);
     let res = await callBackPagination(index);
+    setActiveSort(undefined);
     setFetching(false);
-    //
     setDataRow(res);
   };
 
-  useEffect(() => {
-    console.log(heightTable);
-  }, [heightTable]);
+  const sortTable = (index, direction = "asc") => {
+    let res = [...sortBy(dataRow, index, direction)];
+    setDataRow(res);
+  };
 
   return (
     <div className="table_container">
@@ -65,6 +68,22 @@ const Table = ({
               {titles.map((title, i) => (
                 <th className="head_th" key={i}>
                   {title}
+                  {activeSort ? index[i] === activeSort.index && <div className="tag_col"> {activeSort.direction} </div> : ""}
+                  <div className="carets">
+                    <span
+                      onClick={() => {
+                        let dirNow = "asc";
+                        if (activeSort) {
+                          if (JSON.stringify(activeSort.index) === JSON.stringify(index[i]))
+                            dirNow = activeSort.direction === "asc" ? "desc" : "asc";
+                        }
+                        sortTable(index[i], dirNow);
+                        setActiveSort({ index: index[i], direction: dirNow });
+                      }}
+                    >
+                      <PiCaretUpDown className="up" />
+                    </span>
+                  </div>
                 </th>
               ))}
             </tr>
@@ -121,11 +140,11 @@ export const dataDefault = {
   classes: ["", "", "", "", ""],
   index: [0, 1, 2, 3, ["test", "po"]],
   body: [
-    { 0: "Lorem ing elit.", 1: "Lorem ing elit.", 2: "true", 3: "Lorem ing elit.", test: { po: "mety" } },
-    { 0: "Lorem ing elit.", 1: "Lorem ing elit.", 2: "false", 3: "Lorem ing elit.", test: { po: "mety ds" } },
-    { 0: "Lorem ing elit.", 1: "Lorem ing elit.", 2: "false", 3: "Lorem ing elit.", test: { po: "mety" } },
-    { 0: "Lorem ing elit.", 1: "Lorem ing elit.", 2: "true", 3: "Lorem ing elit.", test: { po: "mety" } },
-    { 0: "Lorem ing elit.", 1: "Lorem ing elit.", 2: "true", 3: "Lorem ing elit.", test: { po: "mety" } },
+    { 0: "Arem ing elit.", 1: "P ing elit.", 2: "true", 3: "Lorem ing elit.", test: { po: "A" } },
+    { 0: "Brem ing elit.", 1: "Lorem ing elit.", 2: "false", 3: "Lorem ing elit.", test: { po: "B" } },
+    { 0: "Ssss ing elit.", 1: "Poo ing elit.", 2: "false", 3: "Lorem ing elit.", test: { po: "C" } },
+    { 0: "Edd ing elit.", 1: "Lorem ing elit.", 2: "true", 3: "Lorem ing elit.", test: { po: "D" } },
+    { 0: "XRen ing elit.", 1: "Lorem ing elit.", 2: "true", 3: "Lorem ing elit.", test: { po: "E" } },
   ],
 };
 

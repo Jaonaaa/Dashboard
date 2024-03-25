@@ -46,17 +46,51 @@
             font-size: 0.75rem
             letter-spacing: 0.05rem
             padding-left: 0.8rem
+            white-space: nowrap
+            position: relative
+
             opacity: 0.7
-            height: 2rem
+            height: 2.6rem
+            padding-right: 2rem
             color: var(--primary)
             @include breakpoints.break_MD()
                 font-size: 0.7rem
                 height: 1.8rem
             @include breakpoints.break_SM()
                 font-size: 0.65rem
+            .tag_col
+                position: absolute
+                right: 14%
+                background: var(--primary)
+                color: #fff
+                padding: 0.15rem 0.3rem
+                border-radius: 0.2rem
+                top: 5%
+                font-size: 0.5rem
+                right: 50%
+                transform: translate(50%,-50%)
+            .carets
+                display: flex
+                position: absolute
+                justify-content: center
+                cursor: pointer
+                align-items: center
+                flex-direction: column
+                right: 0.8rem
+                top: 55%
+                transform: translateY(-50%)
+                &:hover
+                    svg
+                        path
+                            fill: var(--primary)
+                svg
+                    transition: all 0.2s ease-in-out
+                    font-size: 1rem
+
         tr,td
             padding-right: 3rem
             width: fit-content
+            position: relative
         td
             padding-left: 0.8rem
             font-family: "Poppins_L"

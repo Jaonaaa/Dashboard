@@ -5,11 +5,9 @@ import "./Loader.sass";
 //   weigth?: string;
 //   white?: boolean;
 // }
-const Loader = (props) => {
-  const size = props.size ? props.size : "4rem";
-  const weigth = props.weigth ? props.weigth : "0.175rem";
+const Loader = ({ size = "4rem", weigth = "0.175rem", white = false }) => {
   return (
-    <div className={` ${props.white ? "white__" : "loader_icon"}`} style={{ width: size, height: size }}>
+    <div className={`loader_load ${white ? "white__" : "loader_icon"}`} style={{ width: size, height: size }}>
       <svg viewBox="0 0 100 100" style={{ width: size, height: size }}>
         <circle cx="50" cy="50" r={30} fill="none" style={{ strokeWidth: weigth }} />
       </svg>

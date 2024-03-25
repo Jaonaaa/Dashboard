@@ -16,3 +16,28 @@ export const BooleanMark = (value, className = "") => {
     </>
   );
 };
+
+const getValue = (obj, keys) => {
+  let value = obj;
+  if (Array.isArray(keys)) {
+    for (let i = 0; i < keys.length; i++) {
+      value = value[keys[i]];
+    }
+  } else value = value[keys];
+
+  return value;
+};
+
+export const sortBy = (datas = [], sortedBy, direction = "asc") => {
+  return datas.sort((a, b) => {
+    let a_value = getValue(a, sortedBy);
+    let b_value = getValue(b, sortedBy);
+
+    if (a_value > b_value) {
+      return direction === "asc" ? 1 : -1;
+    } else if (a_value < b_value) {
+      return direction === "asc" ? -1 : 1;
+    }
+    return 0;
+  });
+};

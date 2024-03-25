@@ -13,17 +13,7 @@ import {
 } from "chart.js";
 import { Bar, Doughnut, Line, Pie, PolarArea } from "react-chartjs-2";
 import "./style/CustomChart.sass";
-Chart.register(
-  LinearScale,
-  CategoryScale,
-  LineElement,
-  PointElement,
-  BarElement,
-  ArcElement,
-  RadialLinearScale,
-  Tooltip,
-  Legend
-);
+Chart.register(LinearScale, CategoryScale, LineElement, PointElement, BarElement, ArcElement, RadialLinearScale, Tooltip, Legend);
 
 export const example = {
   labels: ["January", "February", "March", "April", "May"],
