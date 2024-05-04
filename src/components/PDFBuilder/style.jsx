@@ -12,4 +12,5 @@ export const styles = StyleSheet.create({
     fontSize: 10,
     justifyContent: "center",
   },
+  ///
 });
