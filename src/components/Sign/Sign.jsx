@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import FormSignIn from "./FormSignIn/FormSignIn";
 import FormSignUp from "./FormSignUp/FormSignUp";
 import { motion } from "framer-motion";
-import "./Sign.sass";
 import { getUserPresp } from "../../hooks/useIdentity";
 import { useNavigate } from "react-router-dom";
+import { alaivoGet } from "../../utils/Alaivo";
+import "./Sign.sass";
 
 const loginVariants = {
   initial: {
@@ -40,9 +41,15 @@ const Sign = () => {
     setLogin(!login);
   };
 
+  const getData = async () => {
+    let res = await alaivoGet("userview");
+    console.log(res);
+  };
+
   return (
     <motion.div id="sign_container" variants={loginVariants} initial="initial" animate="animate" exit="exit">
       {login ? <FormSignIn handleSign={handleSign} /> : <FormSignUp handleSign={handleSign} />}
+      <button onClick={getData}> Get Data </button>
     </motion.div>
   );
 };

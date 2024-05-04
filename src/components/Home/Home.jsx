@@ -6,8 +6,23 @@ import { variantContainerStag } from "../../utilsComponents/Variants";
 import PerspectiveBox from "./PerspectiveBox/PerspectiveBox";
 import ContentContainer from "../ContentContainer/ContentContainer";
 import "./Home.sass";
+import Input from "../../utilsComponents/Input/Input";
+import useForm from "../../hooks/useForm";
+import { alaivoGet, alaivoPost } from "../../utils/Alaivo";
 
 const Home = () => {
+  const { formData, handleInputForm } = useForm();
+  const submit = async (e) => {
+    e.preventDefault();
+    // formData.time = formData.time.replace("T", " ");
+    console.log(formData);
+    let res = await alaivoPost("test/time", JSON.stringify(formData));
+    console.log(res);
+  };
+  const get = async (e) => {
+    let res = await alaivoGet("test/time");
+    console.log(res);
+  };
   return (
     <>
       <ContentContainer>
@@ -26,6 +41,11 @@ const Home = () => {
               <PerspectiveBox bubbleBg="#9acbe4" />
               <PerspectiveBox bubbleBg="#9acbe4" />
               <PerspectiveBox bubbleBg="#9acbe4" />
+              <form onSubmit={submit}>
+                <Input type="datetime-local" name="time" title="Times" onChange={handleInputForm} />
+                <button> Send</button>
+              </form>
+              <button onClick={get}>Get</button>
             </motion.div>
           </motion.div>
         </div>

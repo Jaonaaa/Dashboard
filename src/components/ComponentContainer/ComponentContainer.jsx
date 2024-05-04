@@ -12,6 +12,7 @@ import BoxTitle from "../../utilsComponents/Box/BoxTitle/BoxTitle";
 import Loader from "../../utilsComponents/Hider/Loader/Loader";
 import useForm from "../../hooks/useForm";
 import "./ComponentContainer.sass";
+import RangeInput from "../../utilsComponents/Input/Range/Range";
 
 const ComponentContainer = () => {
   const { formData, handleInputForm } = useForm();
@@ -73,6 +74,11 @@ const ComponentContainer = () => {
       <motion.div className="component_box" variants={variantItem}>
         <Input onChange={handleInputForm} type="checkbox" title={"Title"} name="checkbox" />
         <div className="title_compo">Input checkbox</div>
+      </motion.div>
+      {/* INPUT */}
+      <motion.div className="component_box" variants={variantItem}>
+        <RangeInput callback={() => {}} min={50} />
+        <div className="title_compo">Input Range</div>
       </motion.div>
       {/* LOADER */}
       <motion.div className="component_box" variants={variantItem}>
