@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "database": "bd_advance",
+            "name": "bd_Advance_connection",
+            "username": "postgres",
+            "password": "popo"
+        }
+    ]
+}
