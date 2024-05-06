@@ -41,15 +41,9 @@ const Sign = () => {
     setLogin(!login);
   };
 
-  const getData = async () => {
-    let res = await alaivoGet("userview");
-    console.log(res);
-  };
-
   return (
     <motion.div id="sign_container" variants={loginVariants} initial="initial" animate="animate" exit="exit">
       {login ? <FormSignIn handleSign={handleSign} /> : <FormSignUp handleSign={handleSign} />}
-      <button onClick={getData}> Get Data </button>
     </motion.div>
   );
 };

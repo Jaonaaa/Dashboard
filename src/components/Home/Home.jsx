@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { variantContainerStag } from "../../utilsComponents/Variants";
 import PerspectiveBox from "./PerspectiveBox/PerspectiveBox";
 import ContentContainer from "../ContentContainer/ContentContainer";
-import "./Home.sass";
 import Input from "../../utilsComponents/Input/Input";
 import useForm from "../../hooks/useForm";
 import { alaivoGet, alaivoPost } from "../../utils/Alaivo";
+import "./Home.sass";
 
 const Home = () => {
   const { formData, handleInputForm } = useForm();
